@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="PinClustering" customModuleProvider="target">
+            <connections>
+                <outlet property="map" destination="STo-jH-C18" id="sFT-sd-vpS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="STo-jH-C18">
+                    <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                </mapView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="STo-jH-C18" secondAttribute="trailing" id="FBu-lA-Nbi"/>
+                <constraint firstItem="STo-jH-C18" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XUI-IB-3iN"/>
+                <constraint firstItem="STo-jH-C18" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="rjH-8q-c4F"/>
+                <constraint firstAttribute="bottom" secondItem="STo-jH-C18" secondAttribute="bottom" id="tlK-mL-QkI"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
