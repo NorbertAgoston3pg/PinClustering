@@ -7,16 +7,28 @@
 //
 
 import UIKit
-import CoreLocation
+import MapKit
 
-class FuelLocation: NSObject {
+class FuelLocation: NSObject, MKAnnotation {
+    
+    var title: String? {
+        return info?["station_name"] as? String
+    }
+    
+    var subtitle: String? {
+        return info?["fuel_type_code"] as? String
+    }
+    
+    var coordinate: CLLocationCoordinate2D {
+        let locationInfo = info?["location"] as? [String : AnyObject]
+        let latitude = locationInfo?["latitude"] as! String
+        let longitude = locationInfo?["longitude"] as! String
+        
+        return CLLocationCoordinate2D(latitude: Double(latitude)!, longitude: Double(longitude)!)
+    }
     
     var city: String? {
         return info?["city"] as? String
-    }
-    
-    var fuelTypeCode: String? {
-        return info?["fuel_type_code"] as? String
     }
     
     var locationId: Int? {
@@ -36,31 +48,12 @@ class FuelLocation: NSObject {
         return info?["state"] as? String
     }
     
-    var fuelStationName: String? {
-        return info?["station_name"] as? String
-    }
-    
     var address: String? {
         return info?["street_address"] as? String
     }
     
     var zipCode: String? {
         return info?["zip"] as? String
-    }
-    
-    var location: CLLocation? {
-        //test
-        let locationInfo = info?["location"] as? [String : AnyObject]
-        
-        let latitude = locationInfo?["latitude"] as! String
-        let longitude = locationInfo?["longitude"] as! String
-        
-        let loc = CLLocation(latitude: Double(latitude)!, longitude: Double(longitude)!)
-        print("----- latitude = \(loc.coordinate.latitude) longitude = \(loc.coordinate.longitude)")
-        
-        //endTest
-        
-        return loc
     }
     
     private var info: [String: AnyObject]?

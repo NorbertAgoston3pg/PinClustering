@@ -16,6 +16,7 @@
 		C924642E1D79B4FA00EF6A84 /* TownsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C924642C1D79B4FA00EF6A84 /* TownsViewController.xib */; };
 		C945F5591D81423800E3358D /* FuelLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C945F5581D81423800E3358D /* FuelLocation.swift */; };
 		C945F55B1D81454300E3358D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C945F55A1D81454300E3358D /* CoreLocation.framework */; };
+		C94B65721D87002B00C5537A /* MapViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B65711D87002B00C5537A /* MapViewController+Extension.swift */; };
 		C958DB561D7EBD4B0088E3F2 /* TownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958DB541D7EBD4B0088E3F2 /* TownTableViewCell.swift */; };
 		C958DB571D7EBD4B0088E3F2 /* TownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C958DB551D7EBD4B0088E3F2 /* TownTableViewCell.xib */; };
 		C958DB5A1D7EDA3F0088E3F2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958DB581D7EDA3F0088E3F2 /* MapViewController.swift */; };
@@ -58,6 +59,7 @@
 		C924642C1D79B4FA00EF6A84 /* TownsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TownsViewController.xib; sourceTree = "<group>"; };
 		C945F5581D81423800E3358D /* FuelLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelLocation.swift; sourceTree = "<group>"; };
 		C945F55A1D81454300E3358D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C94B65711D87002B00C5537A /* MapViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+Extension.swift"; sourceTree = "<group>"; };
 		C958DB541D7EBD4B0088E3F2 /* TownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TownTableViewCell.swift; sourceTree = "<group>"; };
 		C958DB551D7EBD4B0088E3F2 /* TownTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TownTableViewCell.xib; sourceTree = "<group>"; };
 		C958DB581D7EDA3F0088E3F2 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				C924642C1D79B4FA00EF6A84 /* TownsViewController.xib */,
 				C958DB581D7EDA3F0088E3F2 /* MapViewController.swift */,
 				C958DB591D7EDA3F0088E3F2 /* MapViewController.xib */,
+				C94B65711D87002B00C5537A /* MapViewController+Extension.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				C945F5591D81423800E3358D /* FuelLocation.swift in Sources */,
 				C924642D1D79B4FA00EF6A84 /* TownsViewController.swift in Sources */,
 				C92463F71D79B25200EF6A84 /* AppDelegate.swift in Sources */,
+				C94B65721D87002B00C5537A /* MapViewController+Extension.swift in Sources */,
 				C958DB641D7EF9080088E3F2 /* NetworkManager.swift in Sources */,
 				C958DB661D7EFEA70088E3F2 /* Town.swift in Sources */,
 				C958DB561D7EBD4B0088E3F2 /* TownTableViewCell.swift in Sources */,
