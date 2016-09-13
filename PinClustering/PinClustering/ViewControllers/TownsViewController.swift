@@ -11,6 +11,10 @@ import UIKit
 class TownsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private static let cellId = "townCellIdentifier"
+    private static let webServiceAddress = "https://data.cityofchicago.org/resource/alternative-fuel-locations.json?"
+    private static let webServiceDescription = "Alternative Fuel Locations"
+    private static let townName = "Chicago"
+    private static let rowHeight: CGFloat = 70.0
 
     @IBOutlet weak var townsTableView: UITableView!
     
@@ -30,19 +34,16 @@ class TownsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         navigationController?.navigationBarHidden = true
     }
     
-    //townCellIdentifier
-    
     // MARK: Private Methods
     
     func setupTownsTableView() {
-        townsTableView.registerNib(UINib(nibName: "TownTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: TownsViewController.cellId)
+        townsTableView.registerNib(UINib(nibName: String(TownTableViewCell), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: TownsViewController.cellId)
     }
     
     func loadTowns() {
-        
-        let webServiceURL = NSURL(string: "https://data.cityofchicago.org/resource/alternative-fuel-locations.json?")
-        let town = Town(name: "Chicago",
-                        webServiceDescription: "Alternative Fuel Locations",
+        let webServiceURL = NSURL(string: TownsViewController.webServiceAddress)
+        let town = Town(name: TownsViewController.townName,
+                        webServiceDescription: TownsViewController.webServiceDescription,
                         webServiceURL: webServiceURL!)
         towns.append(town)
     }
@@ -58,27 +59,29 @@ class TownsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70
+        return TownsViewController.rowHeight
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(TownsViewController.cellId, forIndexPath: indexPath) as! TownTableViewCell
         
-        if indexPath.row < towns.count {
-            cell.setupCellFor(towns[indexPath.row])
+        guard indexPath.row < towns.count else {
+            return cell
         }
+        
+        cell.setupCellFor(towns[indexPath.row])
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let townMap = MapViewController(nibName: "MapViewController", bundle: nil)
-        
-        if indexPath.row < towns.count {
-            townMap.town = towns[indexPath.row]
+        guard indexPath.row < towns.count else {
+            return
         }
         
+        let townMap = MapViewController(nibName: "MapViewController", bundle: nil)
+        townMap.town = towns[indexPath.row]
         navigationController?.pushViewController(townMap, animated: true)
     }
 }

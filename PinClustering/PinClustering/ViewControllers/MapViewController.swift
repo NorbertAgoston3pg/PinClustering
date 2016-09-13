@@ -13,15 +13,13 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var map: MKMapView!
     
+    var pointsOfInterest = [AnyObject]()
     
     var town: Town? {
         didSet {
             loadLocations()
         }
     }
-    
-    private var pointsOfInterest = [AnyObject]()
-    private let regionRadius: CLLocationDistance = 50000
     
     // MARK: Lifecycle
     
@@ -43,44 +41,16 @@ class MapViewController: UIViewController {
 
         NetworkManager.sharedInstance.httpGet(url) { (locations, error) in
             guard let actualLocations = locations else {
-                //handle error
+                if let error = error {
+                    AlertManager.sharedInstance.displayAlert("Error retrieving locations", message: error, presentingViewController: self)
+                }
                 return
             }
             
             self.updatePointsOfInterestWith(actualLocations)
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-                self.setupMap()
+                self.setupMap(self.pointsOfInterest)
             }
         }
-    }
-    
-    func updatePointsOfInterestWith(locations: NSArray) {
-        for locationInfo in locations {
-            let fuelLocation = FuelLocation(locationInfo: locationInfo as? [String : AnyObject])
-            self.pointsOfInterest.append(fuelLocation)
-//            print("Location = \(fuelLocation.coordinate)")
-        }
-    }
-    
-    func setupMap() {
-        guard let pointOfInterest = pointsOfInterest.first as? FuelLocation else {
-            return
-        }
-
-        centerMapOnLocation(pointOfInterest.coordinate)
-        displayLocationsOnMap()
-    }
-    
-    func displayLocationsOnMap() {
-        for pointOfInterest in pointsOfInterest {
-            map.addAnnotation(pointOfInterest as! FuelLocation)
-        }
-    }
-    
-    func centerMapOnLocation(coordinate: CLLocationCoordinate2D) {
-        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-                                                                  regionRadius * 2.0, regionRadius * 2.0)
-        map.setRegion(coordinateRegion, animated: true)
     }
 }

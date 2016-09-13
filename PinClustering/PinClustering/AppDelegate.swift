@@ -45,9 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func loadMainScreen() {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let navController = UINavigationController(rootViewController: TownsViewController(nibName: "TownsViewController", bundle: nil))
-//        navController.navigationBar.hidden = true
-        
+        let navController = UINavigationController(rootViewController: TownsViewController(nibName: "TownsViewController", bundle: nil))        
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
     }

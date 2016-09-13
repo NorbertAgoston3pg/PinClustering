@@ -1,8 +1,8 @@
 //
-//  MapViewController+Extension.swift
+//  MapViewController+MapHandlingExtension.swift
 //  PinClustering
 //
-//  Created by Norbert Agoston on 12/09/16.
+//  Created by Norbert Agoston on 13/09/16.
 //  Copyright © 2016 Norbert Agoston. All rights reserved.
 //
 
@@ -11,7 +11,27 @@ import MapKit
 
 extension MapViewController: MKMapViewDelegate {
     
-    // 1
+    func setupMap(pointsOfInterest: [AnyObject]) {
+        guard let pointOfInterest = pointsOfInterest.first as? FuelLocation else {
+            return
+        }
+        
+        centerMapOnLocation(pointOfInterest.coordinate)
+        displayOnMap(pointsOfInterest)
+    }
+    
+    func displayOnMap(pointsOfInterest: [AnyObject]) {
+        map.addAnnotations(pointsOfInterest as! [FuelLocation])
+    }
+    
+    func centerMapOnLocation(coordinate: CLLocationCoordinate2D) {
+        let regionRadius: CLLocationDistance = 50000
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        map.setRegion(coordinateRegion, animated: true)
+    }
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? FuelLocation {
             let identifier = "pin"
