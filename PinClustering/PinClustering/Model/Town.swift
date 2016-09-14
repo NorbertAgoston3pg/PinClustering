@@ -15,8 +15,6 @@ class Town: NSObject {
     var webServiceURI: String?
     
     init(name: String, webServiceDescription: String, webServiceURI: String) {
-        super.init()
-        
         self.name = name
         self.webServiceDescription = webServiceDescription
         self.webServiceURI = webServiceURI
