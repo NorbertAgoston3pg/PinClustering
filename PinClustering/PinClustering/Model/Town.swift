@@ -12,13 +12,13 @@ class Town: NSObject {
     
     var name: String?
     var webServiceDescription: String?
-    var webServiceURL: NSURL?
+    var webServiceURI: String?
     
-    init(name: String, webServiceDescription: String, webServiceURL: NSURL) {
+    init(name: String, webServiceDescription: String, webServiceURI: String) {
         super.init()
         
         self.name = name
         self.webServiceDescription = webServiceDescription
-        self.webServiceURL = webServiceURL
+        self.webServiceURI = webServiceURI
     }
 }

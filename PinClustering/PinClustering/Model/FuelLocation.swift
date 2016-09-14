@@ -24,7 +24,7 @@ class FuelLocation: NSObject, MKAnnotation {
         let latitude = locationInfo?["latitude"] as! String
         let longitude = locationInfo?["longitude"] as! String
         
-        return CLLocationCoordinate2D(latitude: Double(latitude)!, longitude: Double(longitude)!)
+        return CLLocationCoordinate2D(latitude: Double(latitude) ?? 0.0, longitude: Double(longitude) ?? 0.0)
     }
     
     var city: String? {
@@ -36,7 +36,6 @@ class FuelLocation: NSObject, MKAnnotation {
     }
     
     var dateLastConfirmed: NSDate? {
-//        return info?["date_last_confirmed"] as? String
         return NSDate()
     }
     

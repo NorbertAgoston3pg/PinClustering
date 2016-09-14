@@ -15,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.loadMainScreen()
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let navController = UINavigationController(rootViewController: TownsViewController(nibName: "TownsViewController", bundle: nil))
+        self.window?.rootViewController = navController
+        self.window?.makeKeyAndVisible()
         return true
     }
 
@@ -39,15 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-    // MARK: Private Methods
-    
-    func loadMainScreen() {
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let navController = UINavigationController(rootViewController: TownsViewController(nibName: "TownsViewController", bundle: nil))        
-        self.window?.rootViewController = navController
-        self.window?.makeKeyAndVisible()
     }
 }
 

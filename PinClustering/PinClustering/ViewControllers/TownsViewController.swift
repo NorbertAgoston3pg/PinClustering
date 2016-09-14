@@ -11,7 +11,7 @@ import UIKit
 class TownsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private static let cellId = "townCellIdentifier"
-    private static let webServiceAddress = "https://data.cityofchicago.org/resource/alternative-fuel-locations.json?"
+    private static let webServiceURI = "alternative-fuel-locations.json?"
     private static let webServiceDescription = "Alternative Fuel Locations"
     private static let townName = "Chicago"
     private static let rowHeight: CGFloat = 70.0
@@ -25,7 +25,7 @@ class TownsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTownsTableView()
+        townsTableView.registerNib(UINib(nibName: String(TownTableViewCell), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: TownsViewController.cellId)
         loadTowns()
     }
     
@@ -36,15 +36,10 @@ class TownsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: Private Methods
     
-    func setupTownsTableView() {
-        townsTableView.registerNib(UINib(nibName: String(TownTableViewCell), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: TownsViewController.cellId)
-    }
-    
     func loadTowns() {
-        let webServiceURL = NSURL(string: TownsViewController.webServiceAddress)
         let town = Town(name: TownsViewController.townName,
                         webServiceDescription: TownsViewController.webServiceDescription,
-                        webServiceURL: webServiceURL!)
+                        webServiceURI: TownsViewController.webServiceURI)
         towns.append(town)
     }
     

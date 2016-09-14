@@ -11,29 +11,56 @@ import UIKit
 class NetworkManager: NSObject {
     
     static let sharedInstance = NetworkManager()
+    private let baseURL = "https://data.cityofchicago.org/resource/"
+    private let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     
-    func httpGet(url: NSURL, callback: (NSArray?, String?) -> Void) {
-        let configuration =  NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: configuration)
-        let request = NSMutableURLRequest(URL: url)
+    func httpRequest(URI: String, callback: (NSData?, NSError?) -> Void) {
+        guard let requestURL = buildURLForResource(URI) else {
+            return
+        }
+        
+        let request = NSMutableURLRequest(URL: requestURL)
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            do {
-                if error != nil {
-                    callback(nil,error?.localizedDescription)
-                } else {
-                    if let responseData = data {
-                        let json = try NSJSONSerialization.JSONObjectWithData(responseData, options: .AllowFragments)
-                        
-                        if let locations = json as? [[String: AnyObject]] {
-                            callback(locations,nil)
-                        }
-                    }
+            dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                guard let weakSelf = self else {
+                    return
                 }
-            } catch {
-                callback(nil,"error serializing JSON: \(error)")
+                if error != nil {
+                    callback(nil,error)
+                } else {
+                    callback(data,nil)
+                }
             }
         }
         task.resume()
     }
+    
+    func requestData(URI: String?, callback: (NSData?, NSError?) -> Void) {
+        guard let URI = URI else {
+            return
+        }
+        httpRequest(URI, callback: callback)
+    }
+    
+    func parseData(URI: String?, parser: Parser, callback: (NSError?) -> Void) {
+        guard let URI = URI else {
+            return
+        }
+
+        httpRequest(URI) { (data, error) in
+            parser.parse(data)
+            callback(error)
+        }
+    }
+    
+    func buildURLForResource(URI: String?) -> NSURL? {
+        if let URI = URI {
+            return NSURL(string: baseURL + URI)
+        }
+        return nil
+    }
 }
+
+
+

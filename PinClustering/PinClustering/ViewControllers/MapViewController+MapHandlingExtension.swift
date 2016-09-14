@@ -21,7 +21,9 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func displayOnMap(pointsOfInterest: [AnyObject]) {
-        map.addAnnotations(pointsOfInterest as! [FuelLocation])
+        if let pointsOfInterest = pointsOfInterest as? [FuelLocation] {
+            map.addAnnotations(pointsOfInterest)
+        }
     }
     
     func centerMapOnLocation(coordinate: CLLocationCoordinate2D) {

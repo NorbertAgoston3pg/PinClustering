@@ -9,10 +9,13 @@
 import Foundation
 
 extension MapViewController {
-    func updatePointsOfInterestWith(locations: NSArray) {
-        for locationInfo in locations {
-            let fuelLocation = FuelLocation(locationInfo: locationInfo as? [String : AnyObject])
-            self.pointsOfInterest.append(fuelLocation)
+    func updatePointsOfInterestWith(locations: NSArray?) {
+        guard let locations = locations else {
+            return
+        }
+        
+        self.pointsOfInterest = locations.map { locationInfo in
+            return FuelLocation(locationInfo: locationInfo as? [String : AnyObject])
         }
     }
 }

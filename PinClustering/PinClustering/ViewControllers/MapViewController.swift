@@ -35,22 +35,23 @@ class MapViewController: UIViewController {
     // MARK: Private
     
     func loadLocations() {
-        guard let url = town?.webServiceURL else {
+        guard let uri = town?.webServiceURI else {
             return
         }
-
-        NetworkManager.sharedInstance.httpGet(url) { (locations, error) in
-            guard let actualLocations = locations else {
+        
+        NetworkManager.sharedInstance.requestData(uri) { (data, error) in
+            guard let data = data else {
                 if let error = error {
-                    AlertManager.sharedInstance.displayAlert("Error retrieving locations", message: error, presentingViewController: self)
+                    AlertManager.sharedInstance.displayAlert("Error retrieving locations", message: error.localizedDescription, presentingViewController: self)
                 }
                 return
             }
-            
-            self.updatePointsOfInterestWith(actualLocations)
-            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-                self.setupMap(self.pointsOfInterest)
+            guard let parsedData = FuelParser().parse(data) else {
+                AlertManager.sharedInstance.displayAlert("Error", message: "No valid locations", presentingViewController: self)
+                return
             }
+            self.updatePointsOfInterestWith(parsedData as? NSArray)
+            self.setupMap(self.pointsOfInterest)
         }
     }
 }
