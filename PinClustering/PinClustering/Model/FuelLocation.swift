@@ -19,15 +19,15 @@ class FuelLocation: NSObject, MKAnnotation {
         return info?["fuel_type_code"] as? String
     }
     
-    var coordinate: CLLocationCoordinate2D {        
+    var coordinate: CLLocationCoordinate2D {
         guard let locationInfo = info?["location"] as? [String : AnyObject] else {
             return CLLocationCoordinate2D()
         }
         
-        let latitude = locationInfo["latitude"] ?? "0.0"
-        let longitude = locationInfo["longitude"] ?? "0.0"
+        let latitude = locationInfo["latitude"]?.doubleValue ?? 0.0
+        let longitude = locationInfo["longitude"]?.doubleValue ?? 0.0
         
-        return CLLocationCoordinate2D(latitude: (latitude ?? 0.0).doubleValue, longitude: (longitude ?? 0.0).doubleValue)
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
     var city: String? {
