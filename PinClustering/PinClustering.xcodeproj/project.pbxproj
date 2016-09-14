@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C92463F71D79B25200EF6A84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92463F61D79B25200EF6A84 /* AppDelegate.swift */; };
+		C92463FE1D79B25200EF6A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C92463FD1D79B25200EF6A84 /* Assets.xcassets */; };
+		C92464011D79B25200EF6A84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C92463FF1D79B25200EF6A84 /* LaunchScreen.storyboard */; };
+		C924640C1D79B25300EF6A84 /* PinClusteringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924640B1D79B25300EF6A84 /* PinClusteringTests.swift */; };
+		C92464171D79B25300EF6A84 /* PinClusteringUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92464161D79B25300EF6A84 /* PinClusteringUITests.swift */; };
+		C924642D1D79B4FA00EF6A84 /* TownsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924642B1D79B4FA00EF6A84 /* TownsViewController.swift */; };
+		C924642E1D79B4FA00EF6A84 /* TownsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C924642C1D79B4FA00EF6A84 /* TownsViewController.xib */; };
+		C945F5591D81423800E3358D /* FuelLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C945F5581D81423800E3358D /* FuelLocation.swift */; };
+		C945F55B1D81454300E3358D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C945F55A1D81454300E3358D /* CoreLocation.framework */; };
+		C958DB561D7EBD4B0088E3F2 /* TownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958DB541D7EBD4B0088E3F2 /* TownTableViewCell.swift */; };
+		C958DB571D7EBD4B0088E3F2 /* TownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C958DB551D7EBD4B0088E3F2 /* TownTableViewCell.xib */; };
+		C958DB5A1D7EDA3F0088E3F2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958DB581D7EDA3F0088E3F2 /* MapViewController.swift */; };
+		C958DB5B1D7EDA3F0088E3F2 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C958DB591D7EDA3F0088E3F2 /* MapViewController.xib */; };
+		C958DB5D1D7EDD740088E3F2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C958DB5C1D7EDD740088E3F2 /* MapKit.framework */; };
+		C958DB641D7EF9080088E3F2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958DB631D7EF9080088E3F2 /* NetworkManager.swift */; };
+		C958DB661D7EFEA70088E3F2 /* Town.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958DB651D7EFEA70088E3F2 /* Town.swift */; };
+		C9696EF41D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9696EF31D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift */; };
+		C9696EF61D882D2200E08BD3 /* MapViewController+MapDataSourceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9696EF51D882D2200E08BD3 /* MapViewController+MapDataSourceExtension.swift */; };
+		C9696EF81D8832A100E08BD3 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9696EF71D8832A100E08BD3 /* AlertManager.swift */; };
+		C9C7F28B1D89389F0070BBE4 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C7F28A1D89389F0070BBE4 /* Parser.swift */; };
+		C9C7F28D1D8938C00070BBE4 /* FuelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C7F28C1D8938C00070BBE4 /* FuelParser.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C92464081D79B25300EF6A84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C92463EB1D79B25200EF6A84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C92463F21D79B25200EF6A84;
+			remoteInfo = PinClustering;
+		};
+		C92464131D79B25300EF6A84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C92463EB1D79B25200EF6A84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C92463F21D79B25200EF6A84;
+			remoteInfo = PinClustering;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C92463F31D79B25200EF6A84 /* PinClustering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinClustering.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C92463F61D79B25200EF6A84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C92463FD1D79B25200EF6A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C92464001D79B25200EF6A84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C92464021D79B25200EF6A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C92464071D79B25300EF6A84 /* PinClusteringTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinClusteringTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C924640B1D79B25300EF6A84 /* PinClusteringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClusteringTests.swift; sourceTree = "<group>"; };
+		C924640D1D79B25300EF6A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C92464121D79B25300EF6A84 /* PinClusteringUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinClusteringUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C92464161D79B25300EF6A84 /* PinClusteringUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClusteringUITests.swift; sourceTree = "<group>"; };
+		C92464181D79B25300EF6A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C924642B1D79B4FA00EF6A84 /* TownsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TownsViewController.swift; sourceTree = "<group>"; };
+		C924642C1D79B4FA00EF6A84 /* TownsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TownsViewController.xib; sourceTree = "<group>"; };
+		C945F5581D81423800E3358D /* FuelLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelLocation.swift; sourceTree = "<group>"; };
+		C945F55A1D81454300E3358D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C958DB541D7EBD4B0088E3F2 /* TownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TownTableViewCell.swift; sourceTree = "<group>"; };
+		C958DB551D7EBD4B0088E3F2 /* TownTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TownTableViewCell.xib; sourceTree = "<group>"; };
+		C958DB581D7EDA3F0088E3F2 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C958DB591D7EDA3F0088E3F2 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		C958DB5C1D7EDD740088E3F2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C958DB631D7EF9080088E3F2 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C958DB651D7EFEA70088E3F2 /* Town.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Town.swift; sourceTree = "<group>"; };
+		C9696EF31D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+MapHandlingExtension.swift"; sourceTree = "<group>"; };
+		C9696EF51D882D2200E08BD3 /* MapViewController+MapDataSourceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+MapDataSourceExtension.swift"; sourceTree = "<group>"; };
+		C9696EF71D8832A100E08BD3 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		C9C7F28A1D89389F0070BBE4 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		C9C7F28C1D8938C00070BBE4 /* FuelParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelParser.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C92463F01D79B25200EF6A84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C945F55B1D81454300E3358D /* CoreLocation.framework in Frameworks */,
+				C958DB5D1D7EDD740088E3F2 /* MapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C92464041D79B25300EF6A84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C924640F1D79B25300EF6A84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C92463EA1D79B25200EF6A84 = {
+			isa = PBXGroup;
+			children = (
+				C958DB5E1D7EDD7D0088E3F2 /* Frameworks */,
+				C92463F51D79B25200EF6A84 /* PinClustering */,
+				C924640A1D79B25300EF6A84 /* PinClusteringTests */,
+				C92464151D79B25300EF6A84 /* PinClusteringUITests */,
+				C92463F41D79B25200EF6A84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C92463F41D79B25200EF6A84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C92463F31D79B25200EF6A84 /* PinClustering.app */,
+				C92464071D79B25300EF6A84 /* PinClusteringTests.xctest */,
+				C92464121D79B25300EF6A84 /* PinClusteringUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C92463F51D79B25200EF6A84 /* PinClustering */ = {
+			isa = PBXGroup;
+			children = (
+				C958DB611D7EF9080088E3F2 /* Model */,
+				C958DB531D7EBD4B0088E3F2 /* Views */,
+				C924642A1D79B4FA00EF6A84 /* ViewControllers */,
+				C92463F61D79B25200EF6A84 /* AppDelegate.swift */,
+				C92463FD1D79B25200EF6A84 /* Assets.xcassets */,
+				C92463FF1D79B25200EF6A84 /* LaunchScreen.storyboard */,
+				C92464021D79B25200EF6A84 /* Info.plist */,
+			);
+			path = PinClustering;
+			sourceTree = "<group>";
+		};
+		C924640A1D79B25300EF6A84 /* PinClusteringTests */ = {
+			isa = PBXGroup;
+			children = (
+				C924640B1D79B25300EF6A84 /* PinClusteringTests.swift */,
+				C924640D1D79B25300EF6A84 /* Info.plist */,
+			);
+			path = PinClusteringTests;
+			sourceTree = "<group>";
+		};
+		C92464151D79B25300EF6A84 /* PinClusteringUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C92464161D79B25300EF6A84 /* PinClusteringUITests.swift */,
+				C92464181D79B25300EF6A84 /* Info.plist */,
+			);
+			path = PinClusteringUITests;
+			sourceTree = "<group>";
+		};
+		C924642A1D79B4FA00EF6A84 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C924642B1D79B4FA00EF6A84 /* TownsViewController.swift */,
+				C924642C1D79B4FA00EF6A84 /* TownsViewController.xib */,
+				C958DB581D7EDA3F0088E3F2 /* MapViewController.swift */,
+				C958DB591D7EDA3F0088E3F2 /* MapViewController.xib */,
+				C9696EF31D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift */,
+				C9696EF51D882D2200E08BD3 /* MapViewController+MapDataSourceExtension.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C958DB531D7EBD4B0088E3F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C958DB541D7EBD4B0088E3F2 /* TownTableViewCell.swift */,
+				C958DB551D7EBD4B0088E3F2 /* TownTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C958DB5E1D7EDD7D0088E3F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C945F55A1D81454300E3358D /* CoreLocation.framework */,
+				C958DB5C1D7EDD740088E3F2 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C958DB611D7EF9080088E3F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C9C7F2891D8938740070BBE4 /* Parser */,
+				C958DB621D7EF9080088E3F2 /* Managers */,
+				C958DB651D7EFEA70088E3F2 /* Town.swift */,
+				C945F5581D81423800E3358D /* FuelLocation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C958DB621D7EF9080088E3F2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C958DB631D7EF9080088E3F2 /* NetworkManager.swift */,
+				C9696EF71D8832A100E08BD3 /* AlertManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		C9C7F2891D8938740070BBE4 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				C9C7F28A1D89389F0070BBE4 /* Parser.swift */,
+				C9C7F28C1D8938C00070BBE4 /* FuelParser.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C92463F21D79B25200EF6A84 /* PinClustering */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C924641B1D79B25300EF6A84 /* Build configuration list for PBXNativeTarget "PinClustering" */;
+			buildPhases = (
+				C92463EF1D79B25200EF6A84 /* Sources */,
+				C92463F01D79B25200EF6A84 /* Frameworks */,
+				C92463F11D79B25200EF6A84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PinClustering;
+			productName = PinClustering;
+			productReference = C92463F31D79B25200EF6A84 /* PinClustering.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C92464061D79B25300EF6A84 /* PinClusteringTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C924641E1D79B25300EF6A84 /* Build configuration list for PBXNativeTarget "PinClusteringTests" */;
+			buildPhases = (
+				C92464031D79B25300EF6A84 /* Sources */,
+				C92464041D79B25300EF6A84 /* Frameworks */,
+				C92464051D79B25300EF6A84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C92464091D79B25300EF6A84 /* PBXTargetDependency */,
+			);
+			name = PinClusteringTests;
+			productName = PinClusteringTests;
+			productReference = C92464071D79B25300EF6A84 /* PinClusteringTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C92464111D79B25300EF6A84 /* PinClusteringUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C92464211D79B25300EF6A84 /* Build configuration list for PBXNativeTarget "PinClusteringUITests" */;
+			buildPhases = (
+				C924640E1D79B25300EF6A84 /* Sources */,
+				C924640F1D79B25300EF6A84 /* Frameworks */,
+				C92464101D79B25300EF6A84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C92464141D79B25300EF6A84 /* PBXTargetDependency */,
+			);
+			name = PinClusteringUITests;
+			productName = PinClusteringUITests;
+			productReference = C92464121D79B25300EF6A84 /* PinClusteringUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C92463EB1D79B25200EF6A84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Norbert Agoston";
+				TargetAttributes = {
+					C92463F21D79B25200EF6A84 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					C92464061D79B25300EF6A84 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = C92463F21D79B25200EF6A84;
+					};
+					C92464111D79B25300EF6A84 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = C92463F21D79B25200EF6A84;
+					};
+				};
+			};
+			buildConfigurationList = C92463EE1D79B25200EF6A84 /* Build configuration list for PBXProject "PinClustering" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C92463EA1D79B25200EF6A84;
+			productRefGroup = C92463F41D79B25200EF6A84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C92463F21D79B25200EF6A84 /* PinClustering */,
+				C92464061D79B25300EF6A84 /* PinClusteringTests */,
+				C92464111D79B25300EF6A84 /* PinClusteringUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C92463F11D79B25200EF6A84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C92464011D79B25200EF6A84 /* LaunchScreen.storyboard in Resources */,
+				C958DB571D7EBD4B0088E3F2 /* TownTableViewCell.xib in Resources */,
+				C92463FE1D79B25200EF6A84 /* Assets.xcassets in Resources */,
+				C958DB5B1D7EDA3F0088E3F2 /* MapViewController.xib in Resources */,
+				C924642E1D79B4FA00EF6A84 /* TownsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C92464051D79B25300EF6A84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C92464101D79B25300EF6A84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C92463EF1D79B25200EF6A84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9C7F28D1D8938C00070BBE4 /* FuelParser.swift in Sources */,
+				C945F5591D81423800E3358D /* FuelLocation.swift in Sources */,
+				C9C7F28B1D89389F0070BBE4 /* Parser.swift in Sources */,
+				C924642D1D79B4FA00EF6A84 /* TownsViewController.swift in Sources */,
+				C9696EF81D8832A100E08BD3 /* AlertManager.swift in Sources */,
+				C92463F71D79B25200EF6A84 /* AppDelegate.swift in Sources */,
+				C958DB641D7EF9080088E3F2 /* NetworkManager.swift in Sources */,
+				C9696EF41D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift in Sources */,
+				C958DB661D7EFEA70088E3F2 /* Town.swift in Sources */,
+				C958DB561D7EBD4B0088E3F2 /* TownTableViewCell.swift in Sources */,
+				C958DB5A1D7EDA3F0088E3F2 /* MapViewController.swift in Sources */,
+				C9696EF61D882D2200E08BD3 /* MapViewController+MapDataSourceExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C92464031D79B25300EF6A84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C924640C1D79B25300EF6A84 /* PinClusteringTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C924640E1D79B25300EF6A84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C92464171D79B25300EF6A84 /* PinClusteringUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C92464091D79B25300EF6A84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C92463F21D79B25200EF6A84 /* PinClustering */;
+			targetProxy = C92464081D79B25300EF6A84 /* PBXContainerItemProxy */;
+		};
+		C92464141D79B25300EF6A84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C92463F21D79B25200EF6A84 /* PinClustering */;
+			targetProxy = C92464131D79B25300EF6A84 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C92463FF1D79B25200EF6A84 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C92464001D79B25200EF6A84 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C92464191D79B25300EF6A84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C924641A1D79B25300EF6A84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C924641C1D79B25300EF6A84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PinClustering/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-PG.PinClustering";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C924641D1D79B25300EF6A84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PinClustering/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-PG.PinClustering";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C924641F1D79B25300EF6A84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PinClusteringTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-PG.PinClusteringTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PinClustering.app/PinClustering";
+			};
+			name = Debug;
+		};
+		C92464201D79B25300EF6A84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PinClusteringTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-PG.PinClusteringTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PinClustering.app/PinClustering";
+			};
+			name = Release;
+		};
+		C92464221D79B25300EF6A84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PinClusteringUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-PG.PinClusteringUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PinClustering;
+			};
+			name = Debug;
+		};
+		C92464231D79B25300EF6A84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PinClusteringUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-PG.PinClusteringUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PinClustering;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C92463EE1D79B25200EF6A84 /* Build configuration list for PBXProject "PinClustering" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C92464191D79B25300EF6A84 /* Debug */,
+				C924641A1D79B25300EF6A84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C924641B1D79B25300EF6A84 /* Build configuration list for PBXNativeTarget "PinClustering" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C924641C1D79B25300EF6A84 /* Debug */,
+				C924641D1D79B25300EF6A84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C924641E1D79B25300EF6A84 /* Build configuration list for PBXNativeTarget "PinClusteringTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C924641F1D79B25300EF6A84 /* Debug */,
+				C92464201D79B25300EF6A84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C92464211D79B25300EF6A84 /* Build configuration list for PBXNativeTarget "PinClusteringUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C92464221D79B25300EF6A84 /* Debug */,
+				C92464231D79B25300EF6A84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C92463EB1D79B25200EF6A84 /* Project object */;
+}

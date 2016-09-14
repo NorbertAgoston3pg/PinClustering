@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="townCellIdentifier" rowHeight="70" id="KGk-i7-Jjw" customClass="TownTableViewCell" customModule="PinClustering" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="435" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="435" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fn-YP-RLd">
+                        <rect key="frame" x="16" y="8" width="403" height="26"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-xQ-AyN">
+                        <rect key="frame" x="16" y="43.5" width="403" height="17.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="nEb-xQ-AyN" secondAttribute="trailing" constant="8" id="Nle-w8-Ckg"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="nEb-xQ-AyN" secondAttribute="bottom" constant="0.5" id="cCz-nO-LMc"/>
+                    <constraint firstAttribute="topMargin" secondItem="7fn-YP-RLd" secondAttribute="top" id="h9H-cv-j0y"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="7fn-YP-RLd" secondAttribute="leading" constant="-8" id="pG7-js-Qrl"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7fn-YP-RLd" secondAttribute="trailing" constant="8" id="xpJ-p4-aLL"/>
+                    <constraint firstItem="nEb-xQ-AyN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="yrT-dC-sBP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="townName" destination="7fn-YP-RLd" id="wdQ-mS-Cmi"/>
+                <outlet property="webServiceDescription" destination="nEb-xQ-AyN" id="k2w-Ir-ckZ"/>
+            </connections>
+            <point key="canvasLocation" x="384.5" y="361"/>
+        </tableViewCell>
+    </objects>
+</document>
