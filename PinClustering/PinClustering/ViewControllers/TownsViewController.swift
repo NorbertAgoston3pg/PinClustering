@@ -10,28 +10,28 @@ import UIKit
 
 class TownsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private static let cellId = "townCellIdentifier"
-    private static let webServiceURI = "alternative-fuel-locations.json?"
-    private static let webServiceDescription = "Alternative Fuel Locations"
-    private static let townName = "Chicago"
-    private static let rowHeight: CGFloat = 70.0
+    fileprivate static let cellId = "townCellIdentifier"
+    fileprivate static let webServiceURI = "alternative-fuel-locations.json?"
+    fileprivate static let webServiceDescription = "Alternative Fuel Locations"
+    fileprivate static let townName = "Chicago"
+    fileprivate static let rowHeight: CGFloat = 70.0
 
     @IBOutlet weak var townsTableView: UITableView!
     
-    private var towns = [Town]()
+    fileprivate var towns = [Town]()
     
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        townsTableView.registerNib(UINib(nibName: String(TownTableViewCell), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: TownsViewController.cellId)
+        print("Load Xib With name = \(String(describing:TownTableViewCell()))")
+        townsTableView.register(UINib(nibName: String(describing:TownTableViewCell.self), bundle: Bundle.main), forCellReuseIdentifier: TownsViewController.cellId)
         loadTowns()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
     }
     
     // MARK: Private Methods
@@ -45,38 +45,38 @@ class TownsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: TableViewDelegate Methods
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return towns.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return TownsViewController.rowHeight
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(TownsViewController.cellId, forIndexPath: indexPath) as! TownTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TownsViewController.cellId, for: indexPath) as! TownTableViewCell
         
-        guard indexPath.row < towns.count else {
+        guard (indexPath as IndexPath).row < towns.count else {
             return cell
         }
         
-        cell.setupCellFor(towns[indexPath.row])
+        cell.setupCellFor(towns[(indexPath as IndexPath).row])
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        guard indexPath.row < towns.count else {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard (indexPath as IndexPath).row < towns.count else {
             return
         }
         
         let townMap = MapViewController(nibName: "MapViewController", bundle: nil)
-        townMap.town = towns[indexPath.row]
+        townMap.town = towns[(indexPath as IndexPath).row]
         navigationController?.pushViewController(townMap, animated: true)
     }
 }

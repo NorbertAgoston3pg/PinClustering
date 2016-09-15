@@ -11,7 +11,7 @@ import MapKit
 
 extension MapViewController: MKMapViewDelegate {
     
-    func setupMap(pointsOfInterest: [AnyObject]) {
+    func setupMap(_ pointsOfInterest: [AnyObject]) {
         guard let pointOfInterest = pointsOfInterest.first as? FuelLocation else {
             return
         }
@@ -20,13 +20,13 @@ extension MapViewController: MKMapViewDelegate {
         displayOnMap(pointsOfInterest)
     }
     
-    func displayOnMap(pointsOfInterest: [AnyObject]) {
+    func displayOnMap(_ pointsOfInterest: [AnyObject]) {
         if let pointsOfInterest = pointsOfInterest as? [FuelLocation] {
             map.addAnnotations(pointsOfInterest)
         }
     }
     
-    func centerMapOnLocation(coordinate: CLLocationCoordinate2D) {
+    func centerMapOnLocation(_ coordinate: CLLocationCoordinate2D) {
         let regionRadius: CLLocationDistance = 50000
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
@@ -34,21 +34,21 @@ extension MapViewController: MKMapViewDelegate {
         map.setRegion(coordinateRegion, animated: true)
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? FuelLocation else {
             return nil
         }
         
         let identifier = "pin"
         var view: MKPinAnnotationView
-        if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView {
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.rightCalloutAccessoryView = UIButton(type:.DetailDisclosure) as UIView
+            view.rightCalloutAccessoryView = UIButton(type:.detailDisclosure) as UIView
         }
         
         return view

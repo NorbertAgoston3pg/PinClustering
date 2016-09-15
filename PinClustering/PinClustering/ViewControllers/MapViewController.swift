@@ -27,9 +27,9 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: Private
@@ -50,7 +50,7 @@ class MapViewController: UIViewController {
                 AlertManager.sharedInstance.displayAlert("Error", message: "No valid locations", presentingViewController: self)
                 return
             }
-            self.updatePointsOfInterestWith(parsedData as? NSArray)
+            self.updatePointsOfInterestWith(parsedData as? Array)
             self.setupMap(self.pointsOfInterest)
         }
     }

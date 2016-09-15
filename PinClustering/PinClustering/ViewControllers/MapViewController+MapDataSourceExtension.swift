@@ -9,7 +9,7 @@
 import Foundation
 
 extension MapViewController {
-    func updatePointsOfInterestWith(locations: NSArray?) {
+    func updatePointsOfInterestWith(_ locations: [AnyObject]?) {
         guard let locations = locations else {
             return
         }

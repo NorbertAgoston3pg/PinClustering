@@ -17,7 +17,7 @@ class TownTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    func setupCellFor(town: Town) {
+    func setupCellFor(_ town: Town) {
         townName.text = town.name
         webServiceDescription.text = town.webServiceDescription
     }

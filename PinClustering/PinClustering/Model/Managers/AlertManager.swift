@@ -11,9 +11,9 @@ import UIKit
 class AlertManager: NSObject {
     static let sharedInstance = AlertManager()
     
-    func displayAlert(title: String, message: String, presentingViewController: UIViewController) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-        presentingViewController.presentViewController(alert, animated: true, completion: nil)
+    func displayAlert(_ title: String, message: String, presentingViewController: UIViewController) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        presentingViewController.present(alert, animated: true, completion: nil)
     }
 }

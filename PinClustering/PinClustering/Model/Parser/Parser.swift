@@ -9,7 +9,7 @@
 import UIKit
 
 class Parser: NSObject {
-    func parse(data: NSData?) -> AnyObject? {
+    func parse(_ data: Data?) -> AnyObject? {
         return nil
     }
 }

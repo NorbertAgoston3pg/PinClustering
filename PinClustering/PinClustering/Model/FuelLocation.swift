@@ -38,8 +38,8 @@ class FuelLocation: NSObject, MKAnnotation {
         return info?["id"] as? Int
     }
     
-    var dateLastConfirmed: NSDate? {
-        return NSDate()
+    var dateLastConfirmed: Date? {
+        return Date()
     }
     
     var vehicleClass: String? {
@@ -58,7 +58,7 @@ class FuelLocation: NSObject, MKAnnotation {
         return info?["zip"] as? String
     }
     
-    private var info: [String: AnyObject]?
+    fileprivate var info: [String: AnyObject]?
     
     init(locationInfo: [String: AnyObject]?) {
         super.init()

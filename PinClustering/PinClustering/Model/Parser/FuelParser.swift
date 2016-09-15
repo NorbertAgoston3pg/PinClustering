@@ -9,17 +9,17 @@
 import UIKit
 
 class FuelParser: Parser {
-    override func parse(data: NSData?) -> AnyObject? {
+    override func parse(_ data: Data?) -> AnyObject? {
         guard let data = data else {
             return nil
         }
         
-        let json = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+        let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
         guard let locations = json as? [[String: AnyObject]] else {
             return nil
         }
         
-        return locations
+        return locations as AnyObject?
     }
 }
