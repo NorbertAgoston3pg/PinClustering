@@ -23,6 +23,7 @@
 		C958DB5D1D7EDD740088E3F2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C958DB5C1D7EDD740088E3F2 /* MapKit.framework */; };
 		C958DB641D7EF9080088E3F2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958DB631D7EF9080088E3F2 /* NetworkManager.swift */; };
 		C958DB661D7EFEA70088E3F2 /* Town.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958DB651D7EFEA70088E3F2 /* Town.swift */; };
+		C95B34AF1D8C1FFA0023A5A4 /* ClusteringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B34AE1D8C1FFA0023A5A4 /* ClusteringManager.swift */; };
 		C9696EF41D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9696EF31D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift */; };
 		C9696EF61D882D2200E08BD3 /* MapViewController+MapDataSourceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9696EF51D882D2200E08BD3 /* MapViewController+MapDataSourceExtension.swift */; };
 		C9696EF81D8832A100E08BD3 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9696EF71D8832A100E08BD3 /* AlertManager.swift */; };
@@ -70,6 +71,7 @@
 		C958DB5C1D7EDD740088E3F2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C958DB631D7EF9080088E3F2 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C958DB651D7EFEA70088E3F2 /* Town.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Town.swift; sourceTree = "<group>"; };
+		C95B34AE1D8C1FFA0023A5A4 /* ClusteringManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusteringManager.swift; sourceTree = "<group>"; };
 		C9696EF31D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+MapHandlingExtension.swift"; sourceTree = "<group>"; };
 		C9696EF51D882D2200E08BD3 /* MapViewController+MapDataSourceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+MapDataSourceExtension.swift"; sourceTree = "<group>"; };
 		C9696EF71D8832A100E08BD3 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			children = (
 				C958DB631D7EF9080088E3F2 /* NetworkManager.swift */,
 				C9696EF71D8832A100E08BD3 /* AlertManager.swift */,
+				C95B34AE1D8C1FFA0023A5A4 /* ClusteringManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				C9C7F28D1D8938C00070BBE4 /* FuelParser.swift in Sources */,
 				C945F5591D81423800E3358D /* FuelLocation.swift in Sources */,
 				C9C7F28B1D89389F0070BBE4 /* Parser.swift in Sources */,
+				C95B34AF1D8C1FFA0023A5A4 /* ClusteringManager.swift in Sources */,
 				C924642D1D79B4FA00EF6A84 /* TownsViewController.swift in Sources */,
 				C9696EF81D8832A100E08BD3 /* AlertManager.swift in Sources */,
 				C92463F71D79B25200EF6A84 /* AppDelegate.swift in Sources */,

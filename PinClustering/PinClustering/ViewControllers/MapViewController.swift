@@ -14,7 +14,9 @@ class MapViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     
     var pointsOfInterest = [AnyObject]()
-    
+    var temporaryPointsOfInterest = [AnyObject]()
+    var currentZoomLevel = 0.0
+        
     var town: Town? {
         didSet {
             loadLocations()
