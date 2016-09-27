@@ -11,8 +11,8 @@ import MapKit
 
 extension MapViewController: MKMapViewDelegate {
     
-    func setupMap(_ pointsOfInterest: [AnyObject]) {
-        guard let pointOfInterest = pointsOfInterest.first as? FuelLocation else {
+    func setupMap(_ pointsOfInterest: [Location]) {
+        guard let pointOfInterest = pointsOfInterest.first else {
             return
         }
         
@@ -20,8 +20,8 @@ extension MapViewController: MKMapViewDelegate {
         displayOnMap(pointsOfInterest)
     }
     
-    func displayOnMap(_ pointsOfInterest: [AnyObject]) {
-        if let pointsOfInterest = pointsOfInterest as? [FuelLocation] {
+    func displayOnMap(_ pointsOfInterest: [Location]?) {
+        if let pointsOfInterest = pointsOfInterest {
             map.addAnnotations(pointsOfInterest)
         }
     }
@@ -36,7 +36,7 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("----- View for annotation")
+//        print("----- View for annotation")
         guard let annotation = annotation as? FuelLocation else {
             return nil
         }
@@ -62,39 +62,24 @@ extension MapViewController: MKMapViewDelegate {
         if let visibleAnnotations = visibleAnnotations() {
             temporaryPointsOfInterest = visibleAnnotations
         }
-        
-//        print("Zoom = \(getZoomLevel())")
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         print("region Did Change")
 
-        let (ann1,ann2) = ClusteringManager.sharedInstance.cluster(annotations: temporaryPointsOfInterest, fromMap: map)
-        guard let annotationsToDisplay = ann1 as? [MKAnnotation], let annotationsToRemove = ann2 as? [MKAnnotation] else {
+        guard let clusteredAnnotations = ClusteringManager.sharedInstance.cluster(annotations: temporaryPointsOfInterest, mapZoomLevel: getZoomLevel()) else {
             return
         }
-            
-            let newZoomLevel = getZoomLevel()
-            if currentZoomLevel < getZoomLevel() {
-                print("zoom In")
-                mapView.addAnnotations(annotationsToDisplay as [MKAnnotation])
-            } else {
-                mapView.removeAnnotations(annotationsToRemove as [MKAnnotation])
-            }
-            currentZoomLevel = newZoomLevel
-        
-        
-        print("Zoom = \(currentZoomLevel)")
+        mapView.removeAnnotations(mapView.annotations)
+        print("++++ added annotations = \(clusteredAnnotations.count)")
+        mapView.addAnnotations(clusteredAnnotations)
     }
     
-    func visibleAnnotations() -> [AnyObject]? {
-        var annotations = [AnyObject]()
-        for (_, value)  in pointsOfInterest.enumerated() {
-            guard let annotation = value as? MKAnnotation else {
-                return nil 
-            }
+    func visibleAnnotations() -> [Location]? {
+        var annotations = [Location]()
+        for (_, annotation)  in pointsOfInterest.enumerated() {
             if MKMapRectContainsPoint(map.visibleMapRect, MKMapPointForCoordinate(annotation.coordinate)) {
-               annotations.append(value)
+               annotations.append(annotation)
             }
         }
         return annotations
@@ -111,7 +96,8 @@ extension MapViewController: MKMapViewDelegate {
         if zoomer < 0.0 {
             zoomer = 0
         }
-//        zoomer = round(zoomer)
+        zoomer = round(zoomer)
+        print("Zoom Level = \(zoomer)")
         return zoomer
     }
 }

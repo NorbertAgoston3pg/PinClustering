@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C90093C71D93D486003ECCCB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90093C61D93D486003ECCCB /* Location.swift */; };
 		C92463F71D79B25200EF6A84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92463F61D79B25200EF6A84 /* AppDelegate.swift */; };
 		C92463FE1D79B25200EF6A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C92463FD1D79B25200EF6A84 /* Assets.xcassets */; };
 		C92464011D79B25200EF6A84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C92463FF1D79B25200EF6A84 /* LaunchScreen.storyboard */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C90093C61D93D486003ECCCB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C92463F31D79B25200EF6A84 /* PinClustering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinClustering.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C92463F61D79B25200EF6A84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C92463FD1D79B25200EF6A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				C958DB621D7EF9080088E3F2 /* Managers */,
 				C958DB651D7EFEA70088E3F2 /* Town.swift */,
 				C945F5581D81423800E3358D /* FuelLocation.swift */,
+				C90093C61D93D486003ECCCB /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				C95B34AF1D8C1FFA0023A5A4 /* ClusteringManager.swift in Sources */,
 				C924642D1D79B4FA00EF6A84 /* TownsViewController.swift in Sources */,
 				C9696EF81D8832A100E08BD3 /* AlertManager.swift in Sources */,
+				C90093C71D93D486003ECCCB /* Location.swift in Sources */,
 				C92463F71D79B25200EF6A84 /* AppDelegate.swift in Sources */,
 				C958DB641D7EF9080088E3F2 /* NetworkManager.swift in Sources */,
 				C9696EF41D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift in Sources */,

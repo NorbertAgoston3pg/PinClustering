@@ -12,75 +12,41 @@ import MapKit
 class ClusteringManager: NSObject {
     
     static let sharedInstance = ClusteringManager()
-//    var clusteredAnnotations: [AnyObject] = []
-    
-    var annotationsToRemove: [AnyObject] = []
-    var annotationsToDisplay: [AnyObject] = []
-    
-//    func cluster(annotations:[AnyObject]?) -> [AnyObject]? {
-//        guard let currentAnnotations = annotations , currentAnnotations.count > 1 else {
-//            return annotations
-//        }
-//        
-//        clusteredAnnotations.removeAll()
-//        
-//        for i in 0...currentAnnotations.count - 2 {
-//            if clusteredAnnotations.contains(where: { (annotationToRemove) -> Bool in
-//                currentAnnotations[i].isEqual(annotationToRemove)
-//            }) {
-//                print("------ pin already removed ------")
-//            } else {
-//                for j in i+1...currentAnnotations.count - 1 {
-//                    
-//                    let rectSize = MKMapSize(width: 100000, height: 100000)
-//                    guard let annotaion1 = currentAnnotations[i] as? MKAnnotation, let annotation2 = currentAnnotations[j] as? MKAnnotation else {
-//                        return nil
-//                    }
-//                    
-//                    let rect1 = MKMapRect(origin: MKMapPointForCoordinate(annotaion1.coordinate), size: rectSize)
-//                    let rect2 = MKMapRect(origin: MKMapPointForCoordinate(annotation2.coordinate), size: rectSize)
-//                    
-//                    if MKMapRectIntersectsRect(rect1, rect2) {
-//                        clusteredAnnotations.append(currentAnnotations[j])
-//                    }
-//                }
-//            }
-//        }
-//        print("===== remove annotations = \(clusteredAnnotations.count)")
-//        return clusteredAnnotations
-//    }
-    func cluster(annotations:[AnyObject]?, fromMap map:MKMapView) -> ([AnyObject]?,[AnyObject]?) {
-        guard let currentAnnotations = annotations , currentAnnotations.count > 1 else {
-            return (annotations,nil)
+    var annotationsToRemove: [Location] = []
+
+    func cluster(annotations:[Location]?, mapZoomLevel: Double?) -> [Location]? {
+        guard let currentAnnotations = annotations , currentAnnotations.count > 1, let mapZoomLevel = mapZoomLevel else {
+            return annotations
         }
         
         annotationsToRemove.removeAll()
-        annotationsToDisplay.removeAll()
         
         for (_, annotation) in currentAnnotations.enumerated() {
             if annotationsToRemove.contains(where: { (annotationToRemove) -> Bool in
                 annotation.isEqual(annotationToRemove)
             }) {
-                print("------ pin already removed ------")
+//                print("------ pin already removed ------")
                 continue
             } else {
+                let zoomExponent = 20 - mapZoomLevel
+                let zoomScale = pow(2, zoomExponent)
+                let rectSize = MKMapSize(width: 10 * zoomScale, height: 10 * zoomScale)
+                print("rect size = \(rectSize) at zoomLevel = \(mapZoomLevel)")
+                let rect1 = MKMapRect(origin: MKMapPointForCoordinate(annotation.coordinate), size: rectSize)
                 
-                let rectSize = MKMapSize(width: 1000, height: 1000)
-                guard let annotaion1 = annotation as? MKAnnotation else {
-                    return (nil,nil)
+                let filteredArray = currentAnnotations.filter() {
+                    let rect2 = MKMapRect(origin: MKMapPointForCoordinate($0.coordinate), size: rectSize)
+                    return $0 !== annotation && MKMapRectIntersectsRect(rect1, rect2)
                 }
                 
-                let rect1 = MKMapRect(origin: MKMapPointForCoordinate(annotaion1.coordinate), size: rectSize)
-                let clusteredAnnotations = map.annotations(in: rect1)
-                annotationsToRemove.append(clusteredAnnotations as AnyObject)
-                annotationsToDisplay.append(annotation)
+                annotationsToRemove.append(contentsOf: filteredArray)
             }
         }
-        
-        print("===== remove annotations = \(annotationsToRemove.count) annotations to display = \(annotationsToDisplay.count)")
-        return (annotationsToDisplay,annotationsToRemove)
+        print("===== currentAnnotations = \(currentAnnotations.count)")
+        print("----- remove annotations = \(annotationsToRemove.count)")
+
+        return currentAnnotations.filter { !annotationsToRemove.contains($0) }
     }
-    
 }
 
 extension MKAnnotation {

@@ -13,8 +13,8 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var map: MKMapView!
     
-    var pointsOfInterest = [AnyObject]()
-    var temporaryPointsOfInterest = [AnyObject]()
+    var pointsOfInterest = [Location]()
+    var temporaryPointsOfInterest = [Location]()
     var currentZoomLevel = 0.0
         
     var town: Town? {
