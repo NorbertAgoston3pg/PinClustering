@@ -30,6 +30,7 @@
 		C9696EF81D8832A100E08BD3 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9696EF71D8832A100E08BD3 /* AlertManager.swift */; };
 		C9C7F28B1D89389F0070BBE4 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C7F28A1D89389F0070BBE4 /* Parser.swift */; };
 		C9C7F28D1D8938C00070BBE4 /* FuelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C7F28C1D8938C00070BBE4 /* FuelParser.swift */; };
+		C9EF21C11D9BE894008F8E13 /* QuadTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF21C01D9BE894008F8E13 /* QuadTree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		C9696EF71D8832A100E08BD3 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		C9C7F28A1D89389F0070BBE4 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		C9C7F28C1D8938C00070BBE4 /* FuelParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelParser.swift; sourceTree = "<group>"; };
+		C9EF21C01D9BE894008F8E13 /* QuadTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadTree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				C958DB651D7EFEA70088E3F2 /* Town.swift */,
 				C945F5581D81423800E3358D /* FuelLocation.swift */,
 				C90093C61D93D486003ECCCB /* Location.swift */,
+				C9EF21C01D9BE894008F8E13 /* QuadTree.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				C9696EF41D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift in Sources */,
 				C958DB661D7EFEA70088E3F2 /* Town.swift in Sources */,
 				C958DB561D7EBD4B0088E3F2 /* TownTableViewCell.swift in Sources */,
+				C9EF21C11D9BE894008F8E13 /* QuadTree.swift in Sources */,
 				C958DB5A1D7EDA3F0088E3F2 /* MapViewController.swift in Sources */,
 				C9696EF61D882D2200E08BD3 /* MapViewController+MapDataSourceExtension.swift in Sources */,
 			);
