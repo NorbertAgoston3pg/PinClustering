@@ -10,17 +10,17 @@ import UIKit
 
 class QuadTree <T> {
     
-    // Typealias for an object inside the quad tree node
-    typealias Object = (T, CGPoint)
+    // Typealias for an element inside the quad tree node
+    typealias QuadElement = (T, CGPoint)
     
-    // Arbitrary constant to indicate how many objects can be stored in this quad tree node
+    // Arbitrary constant to indicate how many elements can be stored in this quad tree node
     let nodeCapacity = 4
     
     // The frame of this quad tree
     let boundary: CGRect
     
-    // Objects in this quad tree node
-    var objects = [Object]()
+    // Elements in this quad tree node
+    var quadElements = [QuadElement]()
     
     //Children
     var northWest: QuadTree?
@@ -34,8 +34,8 @@ class QuadTree <T> {
         self.boundary = boundary
     }
     
-    func insert(object: T?, atPoint point: CGPoint?) -> Bool {
-        guard let object = object, let point = point else {
+    func insert(quadElement: T?, atPoint point: CGPoint?) -> Bool {
+        guard let quadElement = quadElement, let point = point else {
             return false
         }
         // Ignore objects that do not belong in this quad tree
@@ -44,8 +44,8 @@ class QuadTree <T> {
         }
         
         // If there is space in this quad tree, add the object here
-        if objects.count < nodeCapacity {
-            objects.append(object, point)
+        if quadElements.count < nodeCapacity {
+            quadElements.append(quadElement, point)
             return true
         }
         
@@ -55,7 +55,7 @@ class QuadTree <T> {
         }
         
         for child in children {
-            if add(object: object, toQuadTreeChild: child, atPoint: point) {
+            if add(quadElement: quadElement, toQuadTreeChild: child, atPoint: point) {
                 return true
             }
         }
@@ -64,31 +64,31 @@ class QuadTree <T> {
     }
     
     func queryRegion(region: CGRect) -> [T] {
-        var objectsInRegion = [T]()
+        var elementsInRegion = [T]()
         
         // Automatically abort if the range does not intersect this quad
         if !boundary.intersects(region) {
-            return objectsInRegion
+            return elementsInRegion
         }
         
-        // Check objects at this quad leve
-        for (object, point) in objects {
+        // Check quadElements at this quad leve
+        for (quadElement, point) in quadElements {
             if region.contains(point) {
-                objectsInRegion.append(object)
+                elementsInRegion.append(quadElement)
             }
         }
         
         //If there are no children, stop here
         if northWest == nil {
-            return objectsInRegion
+            return elementsInRegion
         }
         
-        //Otherwise add the points from the children
+        //Otherwise add the quad elements from the children
         for child in children {
-            objectsInRegion += child.queryRegion(region: region)
+            elementsInRegion += child.queryRegion(region: region)
         }
         
-        return objectsInRegion
+        return elementsInRegion
     }
     
     func subdivide() {
@@ -98,13 +98,22 @@ class QuadTree <T> {
         northEast = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.midX, y: boundary.minY), size: size))
         southWest = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.minX, y: boundary.midY), size: size))
         southEast = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.midX, y: boundary.midY), size: size))
+        
+        if let northWest = northWest, let northEast = northEast,
+            let southWest = southWest, let southEast = southEast {
+            
+            children.append(northWest)
+            children.append(northEast)
+            children.append(southWest)
+            children.append(southEast)
+        }
     }
     
-    func add(object: T?, toQuadTreeChild child:QuadTree?, atPoint point: CGPoint?) -> Bool {
-        guard let child = child, let object = object, let point = point else {
+    func add(quadElement: T?, toQuadTreeChild child:QuadTree?, atPoint point: CGPoint?) -> Bool {
+        guard let child = child, let quadElement = quadElement, let point = point else {
             return false
         }
         
-        return child.insert(object: object, atPoint: point)
+        return child.insert(quadElement: quadElement, atPoint: point)
     }
 }
