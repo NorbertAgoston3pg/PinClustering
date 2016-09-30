@@ -12,7 +12,7 @@ import MapKit
 class Location: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
-    dynamic var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     init(title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D) {
         self.title = title

@@ -18,6 +18,7 @@ extension MapViewController: MKMapViewDelegate {
         
         centerMapOnLocation(pointOfInterest.coordinate)
         displayOnMap(pointsOfInterest)
+        ClusteringManager.sharedInstance.load(locations: pointsOfInterest, forMap: map)
     }
     
     func displayOnMap(_ pointsOfInterest: [Location]?) {
@@ -66,13 +67,35 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         print("region Did Change")
+//
+//        guard let clusteredAnnotations = ClusteringManager.sharedInstance.cluster(annotations: temporaryPointsOfInterest, mapZoomLevel: getZoomLevel()) else {
+//            return
+//        }
+//        mapView.removeAnnotations(mapView.annotations)
+//        print("++++ added annotations = \(clusteredAnnotations.count)")
+//        mapView.addAnnotations(clusteredAnnotations)
+        //test
+        DispatchQueue.global().async {
+            let mapBoundsWidth = Double(mapView.bounds.size.width)
+            let mapRectWidth:Double = mapView.visibleMapRect.size.width
+            let scale:Double = mapBoundsWidth / mapRectWidth
+            guard let clusteredAnnotations = ClusteringManager.sharedInstance.clusteredAnnotations(withinMapRect: mapView.visibleMapRect, withZoomScale: scale) else {
+                return
+            }
+            self.update(mapView: mapView, withAnnotations: clusteredAnnotations)
+//            dispatch_async(dispatch_get_main_queue()) {
+//                // update some UI
+//            }
+        }
 
-        guard let clusteredAnnotations = ClusteringManager.sharedInstance.cluster(annotations: temporaryPointsOfInterest, mapZoomLevel: getZoomLevel()) else {
+        //endTest
+    }
+    
+    func update(mapView: MKMapView?, withAnnotations annotations: [Location]?) {
+        guard let annotations = annotations, let mapView = mapView else {
             return
         }
-        mapView.removeAnnotations(mapView.annotations)
-        print("++++ added annotations = \(clusteredAnnotations.count)")
-        mapView.addAnnotations(clusteredAnnotations)
+        let before: Set = mapView.annotations as? [Location]
     }
     
     func visibleAnnotations() -> [Location]? {

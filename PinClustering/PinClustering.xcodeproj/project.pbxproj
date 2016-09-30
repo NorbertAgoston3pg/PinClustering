@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C90093C71D93D486003ECCCB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90093C61D93D486003ECCCB /* Location.swift */; };
+		C919E3241D9EAD6700A5FBAC /* ClusterAnnotaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C919E3231D9EAD6700A5FBAC /* ClusterAnnotaion.swift */; };
 		C92463F71D79B25200EF6A84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92463F61D79B25200EF6A84 /* AppDelegate.swift */; };
 		C92463FE1D79B25200EF6A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C92463FD1D79B25200EF6A84 /* Assets.xcassets */; };
 		C92464011D79B25200EF6A84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C92463FF1D79B25200EF6A84 /* LaunchScreen.storyboard */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		C90093C61D93D486003ECCCB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C919E3231D9EAD6700A5FBAC /* ClusterAnnotaion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterAnnotaion.swift; sourceTree = "<group>"; };
 		C92463F31D79B25200EF6A84 /* PinClustering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinClustering.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C92463F61D79B25200EF6A84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C92463FD1D79B25200EF6A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				C945F5581D81423800E3358D /* FuelLocation.swift */,
 				C90093C61D93D486003ECCCB /* Location.swift */,
 				C9EF21C01D9BE894008F8E13 /* QuadTree.swift */,
+				C919E3231D9EAD6700A5FBAC /* ClusterAnnotaion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				C92463F71D79B25200EF6A84 /* AppDelegate.swift in Sources */,
 				C958DB641D7EF9080088E3F2 /* NetworkManager.swift in Sources */,
 				C9696EF41D881B4E00E08BD3 /* MapViewController+MapHandlingExtension.swift in Sources */,
+				C919E3241D9EAD6700A5FBAC /* ClusterAnnotaion.swift in Sources */,
 				C958DB661D7EFEA70088E3F2 /* Town.swift in Sources */,
 				C958DB561D7EBD4B0088E3F2 /* TownTableViewCell.swift in Sources */,
 				C9EF21C11D9BE894008F8E13 /* QuadTree.swift in Sources */,
