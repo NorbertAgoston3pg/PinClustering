@@ -15,7 +15,6 @@ class MapViewController: UIViewController {
     
     var pointsOfInterest = [Location]()
     var temporaryPointsOfInterest = [Location]()
-    var currentZoomLevel = 0.0
         
     var town: Town? {
         didSet {

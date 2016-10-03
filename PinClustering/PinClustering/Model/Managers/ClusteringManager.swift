@@ -13,43 +13,16 @@ class ClusteringManager: NSObject {
     
     static let sharedInstance = ClusteringManager()
     var quadTree: QuadTree<Location> = QuadTree(boundary: CGRect.zero)
-    //    var annotationsToRemove: [Location] = []
-//
-//    func cluster(annotations:[Location]?, mapZoomLevel: Double?) -> [Location]? {
-//        guard let currentAnnotations = annotations , currentAnnotations.count > 1, let mapZoomLevel = mapZoomLevel else {
-//            return annotations
-//        }
-//        
-//        annotationsToRemove.removeAll()
-//        
-//        for (_, annotation) in currentAnnotations.enumerated() {
-//            if annotationsToRemove.contains(where: { (annotationToRemove) -> Bool in
-//                annotation.isEqual(annotationToRemove)
-//            }) {
-////                print("------ pin already removed ------")
-//                continue
-//            } else {
-//                let zoomExponent = 20 - mapZoomLevel
-//                let zoomScale = pow(2, zoomExponent)
-//                let rectSize = MKMapSize(width: 10 * zoomScale, height: 10 * zoomScale)
-//                print("rect size = \(rectSize) at zoomLevel = \(mapZoomLevel)")
-//                let rect1 = MKMapRect(origin: MKMapPointForCoordinate(annotation.coordinate), size: rectSize)
-//                
-//                let filteredArray = currentAnnotations.filter() {
-//                    let rect2 = MKMapRect(origin: MKMapPointForCoordinate($0.coordinate), size: rectSize)
-//                    return $0 !== annotation && MKMapRectIntersectsRect(rect1, rect2)
-//                }
-//                
-//                annotationsToRemove.append(contentsOf: filteredArray)
-//            }
-//        }
-//        print("===== currentAnnotations = \(currentAnnotations.count)")
-//        print("----- remove annotations = \(annotationsToRemove.count)")
-//
-//        return currentAnnotations.filter { !annotationsToRemove.contains($0) }
-//    }
     
-    func clusteredAnnotations(withinMapRect mapRect:MKMapRect, withZoomScale zoomScale: Double) -> [Location]? {
+//    func clusteredAnnotations(withinMapRect mapRect:MKMapRect, withZoomScale zoomScale: Double) -> [Location]? {
+    func clusteredAnnotations(withinMapView mapView:MKMapView, withZoomScale zoomScale: Double) -> [Location]? {
+        //test
+        let mapRect = mapView.visibleMapRect
+        let mkcr = MKCoordinateRegionForMapRect(mapRect)
+        let cgr = mapView.convertRegion(mkcr, toRectTo: mapView.superview)
+        //endTest
+        
+        quadTree.boundary = cgr
         let cellSize = calculateCellSize(forZoomScale: zoomScale)
         let scaleFactor =  zoomScale / cellSize
         
@@ -62,10 +35,12 @@ class ClusteringManager: NSObject {
         
         for x in minX...maxX {
             for y in minY...maxY {
-                let mapRect = CGRect(x: Double(x) / scaleFactor, y: Double(y) / scaleFactor, width: 1.0 / scaleFactor, height: 1.0 / scaleFactor)
+                let rect = CGRect(x: Double(x) / scaleFactor, y: Double(y) / scaleFactor, width: 1.0 / scaleFactor, height: 1.0 / scaleFactor)
                 
-                let quadElements = quadTree.queryElements(insideArea: mapRect)
+                let quadElements = quadTree.queryElements(insideArea: rect)
                 let count = Double(quadElements.count)
+                
+                print("----------\(count) elements found in Area \(rect)------")
                 
                 let (totalX, totalY) = quadElements.reduce((0.0,0.0), { (acc: (Double,Double), obj: (Location, CGPoint)) -> (Double,Double) in
                     let (_, position): (Location, CGPoint) = obj
@@ -73,7 +48,9 @@ class ClusteringManager: NSObject {
                 })
                 
                 if count >= 1 {
+                    print("+++++++++")
                     let coordinate =  CLLocationCoordinate2D(latitude: totalX / count, longitude: totalY / count)
+                    print("+++++++++clusterCOord = \(coordinate)")
                     let clusterAnnotation = ClusterAnnotaion(title: "\(count)", subtitle: "", coordinate: coordinate)
                     clusteredAnnotations.append(clusterAnnotation)
                 }
@@ -91,6 +68,7 @@ class ClusteringManager: NSObject {
     
     func calculateCellSize(forZoomScale zoomScale: Double) -> Double {
         let zoomLevel = zoomScaleToZoomLevel(scale: zoomScale)
+        print("Zoom Level = \(zoomLevel)")
         switch zoomLevel {
         case 13, 14, 15:
             return 64

@@ -17,7 +17,7 @@ class QuadTree <T> {
     let nodeCapacity = 4
     
     // The frame of this quad tree
-    let boundary: CGRect
+    var boundary: CGRect
     
     // Elements in this quad tree node
     var quadElements = [QuadElement]()
@@ -57,6 +57,7 @@ class QuadTree <T> {
         
         for child in children {
             if add(quadElement: quadElement, toQuadTreeChild: child, atPoint: point) {
+                print("child Added to quad Child")
                 return true
             }
         }
@@ -71,6 +72,7 @@ class QuadTree <T> {
         
         // Automatically abort if the range does not intersect this quad
         if !boundary.intersects(area) {
+            print("querry Fail - range does not intersect this quad")
             return elementsInRegion
         }
         
@@ -83,6 +85,7 @@ class QuadTree <T> {
         
         //If there are no children, stop here
         if northWest == nil {
+            print("querry - No children - return elements = \(elementsInRegion)")
             return elementsInRegion
         }
         
@@ -90,13 +93,13 @@ class QuadTree <T> {
         for child in children {
             elementsInRegion += child.queryElements(insideArea: area)
         }
-        
+        print("finished querry with elements = \(elementsInRegion)")
         return elementsInRegion
     }
     
     func subdivide() {
         let size = CGSize(width: boundary.width/2.0, height: boundary.height/2.0)
-        
+        print("subdivisionSize = \(size)")
         northWest = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.minX, y: boundary.minY), size: size))
         northEast = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.midX, y: boundary.minY), size: size))
         southWest = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.minX, y: boundary.midY), size: size))
