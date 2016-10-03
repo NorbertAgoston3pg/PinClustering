@@ -83,19 +83,32 @@ extension MapViewController: MKMapViewDelegate {
                 return
             }
             self.update(mapView: mapView, withAnnotations: clusteredAnnotations)
-//            dispatch_async(dispatch_get_main_queue()) {
-//                // update some UI
-//            }
         }
 
         //endTest
     }
     
     func update(mapView: MKMapView?, withAnnotations annotations: [Location]?) {
-        guard let annotations = annotations, let mapView = mapView else {
+        guard let annotations = annotations, let mapView = mapView, let mapViewAnnotations = mapView.annotations as? [Location] else {
             return
         }
-        let before: Set = mapView.annotations as? [Location]
+        
+        let before = Set(mapViewAnnotations)
+        let after = Set(annotations)
+        
+        var toKeep = before
+        toKeep = toKeep.intersection(after)
+        
+        var toAdd = after
+        toAdd = toAdd.subtracting(toKeep)
+        
+        var toRemove = before
+        toRemove = toRemove.subtracting(after)
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotations(Array(toAdd))
+            self.map.removeAnnotations(Array(toRemove))
+        }
     }
     
     func visibleAnnotations() -> [Location]? {

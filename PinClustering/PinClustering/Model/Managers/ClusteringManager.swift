@@ -49,7 +49,7 @@ class ClusteringManager: NSObject {
 //        return currentAnnotations.filter { !annotationsToRemove.contains($0) }
 //    }
     
-    func clusteredAnnotations(withinMapRect mapRect:MKMapRect, withZoomScale zoomScale: Double) -> [MKAnnotation]? {
+    func clusteredAnnotations(withinMapRect mapRect:MKMapRect, withZoomScale zoomScale: Double) -> [Location]? {
         let cellSize = calculateCellSize(forZoomScale: zoomScale)
         let scaleFactor =  zoomScale / cellSize
         
@@ -58,7 +58,7 @@ class ClusteringManager: NSObject {
         let minY = Int(floor(MKMapRectGetMinY(mapRect) * scaleFactor))
         let maxY = Int(floor(MKMapRectGetMaxY(mapRect) * scaleFactor))
         
-        var clusteredAnnotations = [MKAnnotation]()
+        var clusteredAnnotations = [Location]()
         
         for x in minX...maxX {
             for y in minY...maxY {
