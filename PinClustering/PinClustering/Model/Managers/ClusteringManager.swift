@@ -19,7 +19,7 @@ class ClusteringManager: NSObject {
         //test
         let mapRect = mapView.visibleMapRect
         let mkcr = MKCoordinateRegionForMapRect(mapRect)
-        let cgr = mapView.convertRegion(mkcr, toRectTo: mapView.superview)
+        let cgr = mapView.convertRegion(mkcr, toRectTo: mapView)
         //endTest
         
         quadTree.boundary = cgr
@@ -32,10 +32,21 @@ class ClusteringManager: NSObject {
         let maxY = Int(floor(MKMapRectGetMaxY(mapRect) * scaleFactor))
         
         var clusteredAnnotations = [Location]()
-        
+        //test
+        let layer = CAShapeLayer()
+        mapView.layer.addSublayer(layer)
+        //endTest
         for x in minX...maxX {
             for y in minY...maxY {
-                let rect = CGRect(x: Double(x) / scaleFactor, y: Double(y) / scaleFactor, width: 1.0 / scaleFactor, height: 1.0 / scaleFactor)
+//                let rect = CGRect(x: Double(x) / scaleFactor, y: Double(y) / scaleFactor, width: 1.0 / scaleFactor, height: 1.0 / scaleFactor)
+                let rect = CGRect(x: Double(x), y: Double(y), width: cellSize, height: cellSize)
+                
+                //test
+                
+                layer.path = UIBezierPath(roundedRect: rect, cornerRadius: 0).cgPath
+                layer.fillColor = UIColor.red.cgColor
+                
+                //endTest
                 
                 let quadElements = quadTree.queryElements(insideArea: rect)
                 let count = Double(quadElements.count)
@@ -49,7 +60,10 @@ class ClusteringManager: NSObject {
                 
                 if count >= 1 {
                     print("+++++++++")
-                    let coordinate =  CLLocationCoordinate2D(latitude: totalX / count, longitude: totalY / count)
+//                    let coordinate =  CLLocationCoordinate2D(latitude: totalX / count, longitude: totalY / count)
+                    //test
+                    let coordinate =  mapView.convert(CGPoint(x: totalX / count, y: totalY / count), toCoordinateFrom: mapView)
+                    //endTest
                     print("+++++++++clusterCOord = \(coordinate)")
                     let clusterAnnotation = ClusterAnnotaion(title: "\(count)", subtitle: "", coordinate: coordinate)
                     clusteredAnnotations.append(clusterAnnotation)

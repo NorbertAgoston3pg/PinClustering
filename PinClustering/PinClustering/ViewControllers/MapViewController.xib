@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="PinClustering" customModuleProvider="target">
             <connections>
+                <outlet property="gridView" destination="7DC-lE-pzU" id="PGt-Gs-iUK"/>
                 <outlet property="map" destination="STo-jH-C18" id="sFT-sd-vpS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,8 +18,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="STo-jH-C18">
-                    <frame key="frameInset" minY="64" width="600" height="536"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7DC-lE-pzU">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="STo-jH-C18">
                     <connections>
                         <outlet property="delegate" destination="-1" id="1Sc-Km-qNl"/>
                     </connections>
@@ -26,11 +29,16 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="7DC-lE-pzU" secondAttribute="trailing" id="Cgf-Tm-HZ6"/>
+                <constraint firstItem="7DC-lE-pzU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EDF-gb-o2F"/>
+                <constraint firstItem="7DC-lE-pzU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="EOY-02-Sz4"/>
                 <constraint firstAttribute="trailing" secondItem="STo-jH-C18" secondAttribute="trailing" id="FBu-lA-Nbi"/>
                 <constraint firstItem="STo-jH-C18" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XUI-IB-3iN"/>
+                <constraint firstAttribute="bottom" secondItem="7DC-lE-pzU" secondAttribute="bottom" id="ikN-Pp-KpC"/>
                 <constraint firstItem="STo-jH-C18" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="rjH-8q-c4F"/>
                 <constraint firstAttribute="bottom" secondItem="STo-jH-C18" secondAttribute="bottom" id="tlK-mL-QkI"/>
             </constraints>
+            <point key="canvasLocation" x="32.5" y="55.5"/>
         </view>
     </objects>
 </document>

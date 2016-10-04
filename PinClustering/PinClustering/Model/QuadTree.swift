@@ -85,7 +85,7 @@ class QuadTree <T> {
         
         //If there are no children, stop here
         if northWest == nil {
-            print("querry - No children - return elements = \(elementsInRegion)")
+            print("querry - No children - return elements = \(elementsInRegion.count)")
             return elementsInRegion
         }
         
@@ -93,7 +93,7 @@ class QuadTree <T> {
         for child in children {
             elementsInRegion += child.queryElements(insideArea: area)
         }
-        print("finished querry with elements = \(elementsInRegion)")
+        print("finished querry with elements = \(elementsInRegion.count)")
         return elementsInRegion
     }
     

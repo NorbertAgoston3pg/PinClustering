@@ -12,6 +12,7 @@ import MapKit
 class MapViewController: UIViewController {
 
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var gridView: UIView!
     
     var pointsOfInterest = [Location]()
     var temporaryPointsOfInterest = [Location]()
