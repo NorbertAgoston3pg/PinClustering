@@ -6,7 +6,7 @@
 //  Copyright © 2016 Norbert Agoston. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class FuelParser: Parser {
     override func parse(_ data: Data?) -> AnyObject? {

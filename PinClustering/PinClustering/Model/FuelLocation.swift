@@ -6,7 +6,6 @@
 //  Copyright © 2016 Norbert Agoston. All rights reserved.
 //
 
-import UIKit
 import MapKit
 
 class FuelLocation: Location {

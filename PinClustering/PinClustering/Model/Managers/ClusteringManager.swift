@@ -6,10 +6,9 @@
 //  Copyright © 2016 Norbert Agoston. All rights reserved.
 //
 
-import UIKit
 import MapKit
 
-class ClusteringManager: NSObject {
+class ClusteringManager {
     
     static let sharedInstance = ClusteringManager()
     var quadTree: QuadTree<Location> = QuadTree(boundary: CGRect.zero)

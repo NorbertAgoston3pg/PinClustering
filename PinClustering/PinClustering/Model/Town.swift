@@ -6,9 +6,7 @@
 //  Copyright © 2016 Norbert Agoston. All rights reserved.
 //
 
-import UIKit
-
-class Town: NSObject {
+class Town {
     
     var name: String?
     var webServiceDescription: String?

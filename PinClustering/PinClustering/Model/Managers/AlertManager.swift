@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlertManager: NSObject {
+class AlertManager {
     static let sharedInstance = AlertManager()
     
     func displayAlert(_ title: String, message: String, presentingViewController: UIViewController) {

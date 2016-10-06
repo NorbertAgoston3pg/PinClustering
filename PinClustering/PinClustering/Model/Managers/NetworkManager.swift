@@ -6,9 +6,9 @@
 //  Copyright © 2016 Norbert Agoston. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class NetworkManager: NSObject {
+class NetworkManager {
     
     static let sharedInstance = NetworkManager()
     fileprivate let baseURL = "https://data.cityofchicago.org/resource/"
