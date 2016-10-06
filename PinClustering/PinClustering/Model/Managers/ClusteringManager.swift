@@ -31,19 +31,17 @@ class ClusteringManager: NSObject {
         var clusteredAnnotations = [Location]()
         for x in minX...maxX {
             for y in minY...maxY {
-                let rect = MKMapRectMake(Double(x) / scaleFactor, Double(y) / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor)
-//                let rect = CGRect(x: Double(x) / zoomScale, y: Double(y) / zoomScale, width: cellSize, height: cellSize)
+//                let rect = MKMapRectMake(Double(x) / scaleFactor, Double(y) / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor)
+                let rect = CGRect(x: Double(x) / zoomScale, y: Double(y) / zoomScale, width: cellSize, height: cellSize)
                 //test
-                let topLeft = MKCoordinateForMapPoint(rect.origin)
-                let botRight = MKCoordinateForMapPoint(MKMapPointMake(MKMapRectGetMaxX(rect), MKMapRectGetMaxY(rect)))
-                
-                let minLat = botRight.latitude;
-                let maxLat = topLeft.latitude;
-                
-                let minLon = topLeft.longitude;
-                let maxLon = botRight.longitude;
-                
-//                 TBBoundingBoxMake(minLat, minLon, maxLat, maxLon);
+//                let topLeft = MKCoordinateForMapPoint(rect.origin)
+//                let botRight = MKCoordinateForMapPoint(MKMapPointMake(MKMapRectGetMaxX(rect), MKMapRectGetMaxY(rect)))
+//                
+//                let minLat = botRight.latitude;
+//                let maxLat = topLeft.latitude;
+//                
+//                let minLon = topLeft.longitude;
+//                let maxLon = botRight.longitude;
                 //endtest
                 
                 let quadElements = quadTree.queryElements(insideArea: rect)
