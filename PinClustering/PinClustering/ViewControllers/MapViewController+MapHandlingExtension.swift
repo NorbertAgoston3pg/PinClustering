@@ -59,16 +59,14 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         print("region Did Change")
 
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
             let mapBoundsWidth = Double(mapView.bounds.size.width)
             let mapRectWidth:Double = mapView.visibleMapRect.size.width
             let scale:Double = mapBoundsWidth / mapRectWidth
-            print("Zoom Scale = \(scale) based on mapBoundsWidth =\(mapBoundsWidth) mapRectWidth=\(mapRectWidth)")
             guard let clusteredAnnotations = ClusteringManager.sharedInstance.clusteredAnnotations(withinMapView: mapView, withZoomScale: scale) else {
                 return
             }
-            self.update(mapView: mapView, withAnnotations: clusteredAnnotations)
-            mapView.addAnnotations(clusteredAnnotations)
+            self?.update(mapView: mapView, withAnnotations: clusteredAnnotations)
         }
     }
     

@@ -57,7 +57,6 @@ class QuadTree <T> {
         
         for child in children {
             if add(quadElement: quadElement, toQuadTreeChild: child, atPoint: point) {
-                print("child Added to quad Child")
                 return true
             }
         }

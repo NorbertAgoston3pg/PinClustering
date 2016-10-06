@@ -14,13 +14,10 @@ class ClusteringManager: NSObject {
     static let sharedInstance = ClusteringManager()
     var quadTree: QuadTree<Location> = QuadTree(boundary: CGRect.zero)
     
-//    func clusteredAnnotations(withinMapRect mapRect:MKMapRect, withZoomScale zoomScale: Double) -> [Location]? {
     func clusteredAnnotations(withinMapView mapView:MKMapView, withZoomScale zoomScale: Double) -> [Location]? {
-        //test
         let mapRect = mapView.visibleMapRect
         let mkcr = MKCoordinateRegionForMapRect(mapRect)
         let cgr = mapView.convertRegion(mkcr, toRectTo: mapView)
-        //endTest
         
         quadTree.boundary = cgr
         let cellSize = calculateCellSize(forZoomScale: zoomScale)
@@ -32,21 +29,22 @@ class ClusteringManager: NSObject {
         let maxY = Int(floor(MKMapRectGetMaxY(mapRect) * scaleFactor))
         
         var clusteredAnnotations = [Location]()
-        //test
-        let layer = CAShapeLayer()
-        mapView.layer.addSublayer(layer)
-        //endTest
         for x in minX...maxX {
             for y in minY...maxY {
-//                let rect = CGRect(x: Double(x) / scaleFactor, y: Double(y) / scaleFactor, width: 1.0 / scaleFactor, height: 1.0 / scaleFactor)
-                let rect = CGRect(x: Double(x), y: Double(y), width: cellSize, height: cellSize)
-                
+                let rect = MKMapRectMake(Double(x) / scaleFactor, Double(y) / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor)
+//                let rect = CGRect(x: Double(x) / zoomScale, y: Double(y) / zoomScale, width: cellSize, height: cellSize)
                 //test
+                let topLeft = MKCoordinateForMapPoint(rect.origin)
+                let botRight = MKCoordinateForMapPoint(MKMapPointMake(MKMapRectGetMaxX(rect), MKMapRectGetMaxY(rect)))
                 
-                layer.path = UIBezierPath(roundedRect: rect, cornerRadius: 0).cgPath
-                layer.fillColor = UIColor.red.cgColor
+                let minLat = botRight.latitude;
+                let maxLat = topLeft.latitude;
                 
-                //endTest
+                let minLon = topLeft.longitude;
+                let maxLon = botRight.longitude;
+                
+//                 TBBoundingBoxMake(minLat, minLon, maxLat, maxLon);
+                //endtest
                 
                 let quadElements = quadTree.queryElements(insideArea: rect)
                 let count = Double(quadElements.count)
@@ -59,11 +57,8 @@ class ClusteringManager: NSObject {
                 })
                 
                 if count >= 1 {
-                    print("+++++++++")
 //                    let coordinate =  CLLocationCoordinate2D(latitude: totalX / count, longitude: totalY / count)
-                    //test
                     let coordinate =  mapView.convert(CGPoint(x: totalX / count, y: totalY / count), toCoordinateFrom: mapView)
-                    //endTest
                     print("+++++++++clusterCOord = \(coordinate)")
                     let clusterAnnotation = ClusterAnnotaion(title: "\(count)", subtitle: "", coordinate: coordinate)
                     clusteredAnnotations.append(clusterAnnotation)
