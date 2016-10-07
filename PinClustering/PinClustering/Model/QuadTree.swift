@@ -6,20 +6,20 @@
 //  Copyright © 2016 Norbert Agoston. All rights reserved.
 //
 
-import UIKit
+import MapKit
 
 class QuadTree <T> {
     
     // Typealias for an element inside the quad tree node
-    typealias QuadElement = (T, CGPoint)
+    typealias QuadElement = (T, MKMapPoint)
     
     // Arbitrary constant to indicate how many elements can be stored in this quad tree node
     let nodeCapacity = 4
     
     // The frame of this quad tree
-    var boundary: CGRect
+    var boundary: MKMapRect
     
-    // Elements in this quad tree node
+    //Quad Elements in this quad tree node
     var quadElements = [QuadElement]()
     
     //Children
@@ -30,23 +30,32 @@ class QuadTree <T> {
     
     var children = [QuadTree]()
     
-    init(boundary: CGRect) {
+    var numberOfElements = 0
+    
+    init(boundary: MKMapRect) {
         self.boundary = boundary
     }
     
+    deinit {
+        print("deinit QuadTree")
+    }
+    
     @discardableResult
-    func insert(quadElement: T?, atPoint point: CGPoint?) -> Bool {
-        guard let quadElement = quadElement, let point = point else {
+    func insert(element: T?, atPoint point: MKMapPoint?) -> Bool {
+//        print("inserItem")
+        guard let element = element, let point = point else {
             return false
         }
         // Ignore objects that do not belong in this quad tree
-        if !boundary.contains(point) {
+        if !MKMapRectContainsPoint(boundary, point) {
+            print("not in the quad")
             return false
         }
         
         // If there is space in this quad tree, add the object here
         if quadElements.count < nodeCapacity {
-            quadElements.append(quadElement, point)
+            print("added")
+            quadElements.append(element, point)
             return true
         }
         
@@ -56,7 +65,7 @@ class QuadTree <T> {
         }
         
         for child in children {
-            if add(quadElement: quadElement, toQuadTreeChild: child, atPoint: point) {
+            if add(element: element, toQuadTreeChild: child, atPoint: point) {
                 return true
             }
         }
@@ -64,20 +73,26 @@ class QuadTree <T> {
         return false
     }
     
-//    func queryElements(insideArea area: CGRect) -> [T] {
-    func queryElements(insideArea area: CGRect) -> [QuadElement] {
-//        var elementsInRegion = [T]()
+    private func add(element: T?, toQuadTreeChild child:QuadTree?, atPoint point: MKMapPoint?) -> Bool {
+        guard let child = child, let element = element, let point = point else {
+            return false
+        }
+        
+        return child.insert(element: element, atPoint: point)
+    }
+    
+    func queryElements(insideArea area: MKMapRect) -> [QuadElement] {
         var elementsInRegion = [QuadElement]()
         
         // Automatically abort if the range does not intersect this quad
-        if !boundary.intersects(area) {
+        if !MKMapRectIntersectsRect(boundary, area) {
             print("querry Fail - range does not intersect this quad")
             return elementsInRegion
         }
         
         // Check quadElements at this quad leve
         for (quadElement, point) in quadElements {
-            if area.contains(point) {
+            if MKMapRectContainsPoint(area, point) {
                 elementsInRegion.append(quadElement, point)
             }
         }
@@ -89,7 +104,7 @@ class QuadTree <T> {
         }
         
         //Otherwise add the quad elements from the children
-        for child in children {
+        for (_, child) in children.enumerated() {
             elementsInRegion += child.queryElements(insideArea: area)
         }
         print("finished querry with elements = \(elementsInRegion.count)")
@@ -97,12 +112,13 @@ class QuadTree <T> {
     }
     
     func subdivide() {
-        let size = CGSize(width: boundary.width/2.0, height: boundary.height/2.0)
+        let size = MKMapSize(width: boundary.size.width/2.0, height: boundary.size.height/2.0)
         print("subdivisionSize = \(size)")
-        northWest = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.minX, y: boundary.minY), size: size))
-        northEast = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.midX, y: boundary.minY), size: size))
-        southWest = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.minX, y: boundary.midY), size: size))
-        southEast = QuadTree(boundary: CGRect(origin: CGPoint(x: boundary.midX, y: boundary.midY), size: size))
+        
+        northWest = QuadTree(boundary: MKMapRect(origin: MKMapPoint(x: MKMapRectGetMinX(boundary), y: MKMapRectGetMinY(boundary)), size: size))
+        northEast = QuadTree(boundary: MKMapRect(origin: MKMapPoint(x: MKMapRectGetMidX(boundary), y: MKMapRectGetMinY(boundary)), size: size))
+        southWest = QuadTree(boundary: MKMapRect(origin: MKMapPoint(x: MKMapRectGetMinX(boundary), y: MKMapRectGetMidY(boundary)), size: size))
+        southEast = QuadTree(boundary: MKMapRect(origin: MKMapPoint(x: MKMapRectGetMidX(boundary), y: MKMapRectGetMidY(boundary)), size: size))
         
         if let northWest = northWest, let northEast = northEast,
             let southWest = southWest, let southEast = southEast {
@@ -114,11 +130,19 @@ class QuadTree <T> {
         }
     }
     
-    private func add(quadElement: T?, toQuadTreeChild child:QuadTree?, atPoint point: CGPoint?) -> Bool {
-        guard let child = child, let quadElement = quadElement, let point = point else {
-            return false
+    func traverseQuadTree() {        
+        for (location, _) in quadElements {
+            print("item \(location)")
+            numberOfElements += 1
         }
         
-        return child.insert(quadElement: quadElement, atPoint: point)
+        if northWest == nil {
+            return
+        }
+        
+        for (_, child) in children.enumerated() {
+            child.traverseQuadTree()
+        }
+        return
     }
 }

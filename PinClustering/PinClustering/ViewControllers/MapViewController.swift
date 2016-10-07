@@ -16,11 +16,16 @@ class MapViewController: UIViewController {
     
     var pointsOfInterest = [Location]()
     var temporaryPointsOfInterest = [Location]()
+    let clusteringManager = ClusteringManager()
         
     var town: Town? {
         didSet {
             loadLocations()
         }
+    }
+    
+    deinit {
+        print("deinit MapView")
     }
     
     // MARK: Lifecycle

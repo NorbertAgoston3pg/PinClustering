@@ -10,15 +10,12 @@ import MapKit
 
 class ClusteringManager {
     
-    static let sharedInstance = ClusteringManager()
-    var quadTree: QuadTree<Location> = QuadTree(boundary: CGRect.zero)
+    var quadTree: QuadTree<Location> = QuadTree(boundary: MKMapRect())
     
     func clusteredAnnotations(withinMapView mapView:MKMapView, withZoomScale zoomScale: Double) -> [Location]? {
         let mapRect = mapView.visibleMapRect
-        let mkcr = MKCoordinateRegionForMapRect(mapRect)
-        let cgr = mapView.convertRegion(mkcr, toRectTo: mapView)
         
-        quadTree.boundary = cgr
+        quadTree.boundary = mapRect
         let cellSize = calculateCellSize(forZoomScale: zoomScale)
         let scaleFactor =  zoomScale / cellSize
         
@@ -27,11 +24,14 @@ class ClusteringManager {
         let minY = Int(floor(MKMapRectGetMinY(mapRect) * scaleFactor))
         let maxY = Int(floor(MKMapRectGetMaxY(mapRect) * scaleFactor))
         
+//        print("minX = \(minX) maxX = \(maxX) minY = \(minY) maxY = \(maxY) visibleMapRect = \(mapRect)")
+        
         var clusteredAnnotations = [Location]()
         for x in minX...maxX {
             for y in minY...maxY {
-//                let rect = MKMapRectMake(Double(x) / scaleFactor, Double(y) / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor)
-                let rect = CGRect(x: Double(x) / zoomScale, y: Double(y) / zoomScale, width: cellSize, height: cellSize)
+                let rect = MKMapRectMake(Double(x) / scaleFactor, Double(y) / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor)
+                
+                print("queryRect = \(rect) \n visibleRect = \(mapRect)")
                 //test
 //                let topLeft = MKCoordinateForMapPoint(rect.origin)
 //                let botRight = MKCoordinateForMapPoint(MKMapPointMake(MKMapRectGetMaxX(rect), MKMapRectGetMaxY(rect)))
@@ -48,15 +48,13 @@ class ClusteringManager {
                 
                 print("----------\(count) elements found in Area \(rect)------")
                 
-                let (totalX, totalY) = quadElements.reduce((0.0,0.0), { (acc: (Double,Double), obj: (Location, CGPoint)) -> (Double,Double) in
-                    let (_, position): (Location, CGPoint) = obj
+                let (totalX, totalY) = quadElements.reduce((0.0,0.0), { (acc: (Double,Double), obj: (Location, MKMapPoint)) -> (Double,Double) in
+                    let (_, position): (Location, MKMapPoint) = obj
                     return (acc.0 + Double(position.x), acc.1 + Double(position.y))
                 })
                 
-                if count >= 1 {
-//                    let coordinate =  CLLocationCoordinate2D(latitude: totalX / count, longitude: totalY / count)
-                    let coordinate =  mapView.convert(CGPoint(x: totalX / count, y: totalY / count), toCoordinateFrom: mapView)
-                    print("+++++++++clusterCOord = \(coordinate)")
+                if count > 1 {
+                    let coordinate = CLLocationCoordinate2DMake(totalX / count, totalY / count)
                     let clusterAnnotation = ClusterAnnotaion(title: "\(count)", subtitle: "", coordinate: coordinate)
                     clusteredAnnotations.append(clusterAnnotation)
                 }
@@ -87,13 +85,13 @@ class ClusteringManager {
         }
     }
     
-    func load(locations:[Location]?, forMap map:MKMapView?) {
-        guard let locations = locations , let map = map else {
+    func load(locations:[Location]?) {
+        guard let locations = locations else {
             return
         }
+        print("locations Count = \(locations.count)")
         for location in locations {
-            let pointOnMap = map.convert(location.coordinate, toPointTo: map)
-            quadTree.insert(quadElement: location, atPoint: pointOnMap)
+            quadTree.insert(element: location, atPoint: MKMapPointForCoordinate(location.coordinate))
         }
     }
 }

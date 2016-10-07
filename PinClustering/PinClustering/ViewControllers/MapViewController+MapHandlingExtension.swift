@@ -18,7 +18,9 @@ extension MapViewController: MKMapViewDelegate {
         
         centerMapOnLocation(pointOfInterest.coordinate)
 //        displayOnMap(pointsOfInterest)
-        ClusteringManager.sharedInstance.load(locations: pointsOfInterest, forMap: map)
+        clusteringManager.load(locations: pointsOfInterest)
+        clusteringManager.quadTree.traverseQuadTree()
+        
     }
     
 //    func displayOnMap(_ pointsOfInterest: [Location]?) {
@@ -27,14 +29,30 @@ extension MapViewController: MKMapViewDelegate {
 //        }
 //    }
     
+    //test
+//    func setZoomLevel(zoomLevel:Int, at coordinate:CLLocationCoordinate2D) {
+//        setCenterCoordinate:self.centerCoordinate zoomLevel:zoomLevel animated:NO];
+//    }
+//    
+//    func zoomLevel {
+//    return log2(360 * ((self.frame.size.width/256) / self.region.span.longitudeDelta)) + 1;
+//    }
+//    
+//    - (void)setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate
+//    zoomLevel:(NSUInteger)zoomLevel animated:(BOOL)animated {
+//    MKCoordinateSpan span = MKCoordinateSpanMake(0, 360/pow(2, zoomLevel)*self.frame.size.width/256);
+//    [self setRegion:MKCoordinateRegionMake(centerCoordinate, span) animated:animated];
+//    }
+    //endTest
+    
     func centerMapOnLocation(_ coordinate: CLLocationCoordinate2D) {
-        let regionRadius: CLLocationDistance = 50000
+        let regionRadius: CLLocationDistance = 5000000
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
-        map.setRegion(coordinateRegion, animated: true)
+        map.setRegion(coordinateRegion, animated: false)
     }
-    
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 //        print("----- View for annotation")
         guard let annotation = annotation as? FuelLocation else {
@@ -63,7 +81,7 @@ extension MapViewController: MKMapViewDelegate {
             let mapBoundsWidth = Double(mapView.bounds.size.width)
             let mapRectWidth:Double = mapView.visibleMapRect.size.width
             let scale:Double = mapBoundsWidth / mapRectWidth
-            guard let clusteredAnnotations = ClusteringManager.sharedInstance.clusteredAnnotations(withinMapView: mapView, withZoomScale: scale) else {
+            guard let clusteredAnnotations = self?.clusteringManager.clusteredAnnotations(withinMapView: mapView, withZoomScale: scale) else {
                 return
             }
             self?.update(mapView: mapView, withAnnotations: clusteredAnnotations)
