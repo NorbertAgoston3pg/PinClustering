@@ -55,7 +55,7 @@ extension MapViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 //        print("----- View for annotation")
-        guard let annotation = annotation as? FuelLocation else {
+        guard let annotation = annotation as? Location else {
             return nil
         }
         
@@ -77,15 +77,17 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         print("region Did Change")
 
-        DispatchQueue.global().async { [weak self] in
+//        DispatchQueue.global().async { [weak self] in
             let mapBoundsWidth = Double(mapView.bounds.size.width)
             let mapRectWidth:Double = mapView.visibleMapRect.size.width
             let scale:Double = mapBoundsWidth / mapRectWidth
-            guard let clusteredAnnotations = self?.clusteringManager.clusteredAnnotations(withinMapView: mapView, withZoomScale: scale) else {
+            guard let clusteredAnnotations = self.clusteringManager.clusteredAnnotations(withinMapView: mapView, withZoomScale: scale) else {
                 return
             }
-            self?.update(mapView: mapView, withAnnotations: clusteredAnnotations)
-        }
+//            self?.update(mapView: mapView, withAnnotations: clusteredAnnotations)
+            mapView.removeAnnotations(mapView.annotations)
+            mapView.addAnnotations(clusteredAnnotations)
+//        }
     }
     
     func update(mapView: MKMapView?, withAnnotations annotations: [Location]?) {

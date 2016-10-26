@@ -48,18 +48,20 @@ class ClusteringManager {
                 
                 print("----------\(count) elements found in Area \(rect)------")
                 
-                let (totalX, totalY) = quadElements.reduce((0.0,0.0), { (acc: (Double,Double), obj: (Location, MKMapPoint)) -> (Double,Double) in
-                    let (_, position): (Location, MKMapPoint) = obj
-                    return (acc.0 + Double(position.x), acc.1 + Double(position.y))
-                })
+//                let (totalX, totalY) = quadElements.reduce((0.0,0.0), { (acc: (Double,Double), obj: (Location, MKMapPoint)) -> (Double,Double) in
+//                    let (_, position): (Location, MKMapPoint) = obj
+//                    return (acc.0 + Double(position.x), acc.1 + Double(position.y))
+//                })
                 
                 if count > 1 {
-                    let coordinate = CLLocationCoordinate2DMake(totalX / count, totalY / count)
-                    let clusterAnnotation = ClusterAnnotaion(title: "\(count)", subtitle: "", coordinate: coordinate)
+//                    let coordinate = CLLocationCoordinate2DMake(totalX / count, totalY / count)
+                    let clusterAnnotation = Location(title: "\(count)", subtitle: "", coordinate: (quadElements.first?.0.coordinate)!)
+                    print("clustered Annotation: \(quadElements.first?.0.coordinate)")
                     clusteredAnnotations.append(clusterAnnotation)
                 }
             }
         }
+    
         return clusteredAnnotations
     }
     
@@ -91,6 +93,7 @@ class ClusteringManager {
         }
         print("locations Count = \(locations.count)")
         for location in locations {
+            print("originalLocation = \(location.coordinate)")
             quadTree.insert(element: location, atPoint: MKMapPointForCoordinate(location.coordinate))
         }
     }

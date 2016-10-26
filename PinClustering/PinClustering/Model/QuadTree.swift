@@ -47,10 +47,10 @@ class QuadTree <T> {
             return false
         }
         // Ignore objects that do not belong in this quad tree
-        if !MKMapRectContainsPoint(boundary, point) {
-            print("not in the quad")
-            return false
-        }
+//        if !MKMapRectContainsPoint(boundary, point) {
+//            print("not in the quad")
+//            return false
+//        }
         
         // If there is space in this quad tree, add the object here
         if quadElements.count < nodeCapacity {
